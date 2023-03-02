@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- <script type="text/javascript">
+            let key = localStorage.getItem("admin");
+
+            if (!key) {
+                window.location = 'login.html';
+            }
+            else{
+                //console.log(key);
+            }
+        </script> -->
+
+
+        <title>Create New User</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
+        <link href="./dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
+        <link href="./dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./dist-assets/css/plugins/dropzone.min.css" />
+        <link rel="stylesheet" href="dist-assets/css/plugins/style.css" />
+
+    </head>
+
+    <body>
+
+        <div class="auth-layout-wrap" style="background: url(assets/img/section-bg-101.jpg) no-repeat center center fixed; background-size: cover;">
+            <div class="auth-content">
+                <div class="card o-hidden col-md-6" style="margin: auto;">
+                    <div class="row">
+                        <div class="fix" style="margin: auto;">
+                            <div class="p-4">
+                                <div class="auth-logo text-center mb-4">
+                                    <img src="https://recon.lfcww.org/dist-assets/images/logo.png" alt="">
+                                </div>
+                                <div>
+                                    <h1 class="mb-3 text-18">CREATE NEW USER ACCOUNT</h1>
+                                </div>
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">FIRSTNAME:</label>
+                                        <input class="form-control form-control-rounded" id="full_name" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">LASTNAME:</label>
+                                        <input class="form-control form-control-rounded" id="favourite_song" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">MATRIC NO:</label>
+                                        <input class="form-control form-control-rounded" id="milk_before_cereal" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">EMAIL:</label>
+                                        <input class="form-control form-control-rounded" id="email" type="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">PASSWORD:</label>
+                                        <input class="form-control form-control-rounded" id="password" type="password" required>
+                                    </div>
+                                    <button class="btn btn-primary btn-block btn-rounded mt-3" onclick="register()">Create New User</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ Search UI End ============= -->
+        <script src="./dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+        <script src="./dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+        <script src="./dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="./dist-assets/js/scripts/script.min.js"></script>
+        <script src="./dist-assets/js/scripts/sidebar-horizontal.script.js"></script>
+        <script src="./dist-assets/js/plugins/dropzone.min.js"></script>
+        <script src="./dist-assets/js/scripts/dropzone.script.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+            import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+            import { getDatabase, ref, child, update } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyCgr78LWyUpCnm_ykOWgeZpICpn_jXYgc8",
+                authDomain: "authentication-app-2059f.firebaseapp.com",
+                databaseURL: "https://authentication-app-2059f-default-rtdb.firebaseio.com",
+                projectId: "authentication-app-2059f",
+                storageBucket: "authentication-app-2059f.appspot.com",
+                messagingSenderId: "937711608289",
+                appId: "1:937711608289:web:e17022ca91c64812b732a0"
+            };
+
+
+
+            // Your web app's Firebase configuration
+
+
+                // const app = initializeApp(firebaseConfig);
+                // const database = getDatabase();
+                // const auth = getAuth();
+
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                // Initialize variables
+                const auth = firebase.auth()
+                const database = firebase.database()
+
+                // Set up our register function
+                function register () {
+                // Get all our input fields
+                email = document.getElementById('email').value
+                password = document.getElementById('password').value
+                full_name = document.getElementById('full_name').value
+                favourite_song = document.getElementById('favourite_song').value
+                milk_before_cereal = document.getElementById('milk_before_cereal').value
+
+                // Validate input fields
+                if (validate_email(email) == false || validate_password(password) == false) {
+                    alert('Email or Password is Outta Line!!')
+                    return
+                    // Don't continue running the code
+                }
+                if (validate_field(full_name) == false || validate_field(favourite_song) == false || validate_field(milk_before_cereal) == false) {
+                    alert('One or More Extra Fields is Outta Line!!')
+                    return
+                }
+                
+                // Move on with Auth
+                auth.createUserWithEmailAndPassword(email, password)
+                .then(function() {
+                    // Declare user variable
+                    var user = auth.currentUser
+
+                    // Add this user to Firebase Database
+                    var database_ref = database.ref()
+
+                    // Create User data
+                    var user_data = {
+                    email : email,
+                    full_name : full_name,
+                    favourite_song : favourite_song,
+                    milk_before_cereal : milk_before_cereal,
+                    last_login : Date.now()
+                }
+
+                    // Push to Firebase Database
+                    database_ref.child('users/' + user.uid).set(user_data)
+
+                    // DOne
+                    alert('User Created!!')
+                })
+                .catch(function(error) {
+                    // Firebase will use this to alert of its errors
+                    var error_code = error.code
+                    var error_message = error.message
+
+                    alert(error_message)
+                })
+            }
+
+                // Set up our login function
+                function login () {
+                // Get all our input fields
+                email = document.getElementById('email').value
+                password = document.getElementById('password').value
+
+                // Validate input fields
+                if (validate_email(email) == false || validate_password(password) == false) {
+                    alert('Email or Password is Outta Line!!')
+                    return
+                    // Don't continue running the code
+                }
+
+                auth.signInWithEmailAndPassword(email, password)
+                .then(function() {
+                    // Declare user variable
+                    var user = auth.currentUser
+
+                    // Add this user to Firebase Database
+                    var database_ref = database.ref()
+
+                    // Create User data
+                    var user_data = {
+                    last_login : Date.now()
+                }
+
+                    // Push to Firebase Database
+                    database_ref.child('users/' + user.uid).update(user_data)
+
+                    // DOne
+                    alert('User Logged In!!')
+
+                })
+                .catch(function(error) {
+                    // Firebase will use this to alert of its errors
+                    var error_code = error.code
+                    var error_message = error.message
+
+                    alert(error_message)
+                })
+            }
+
+
+
+
+                // Validate Functions
+                function validate_email(email) {
+                expression = /^[^@]+@\w+(\.\w+)+\w$/
+                if (expression.test(email) == true) {
+                    // Email is good
+                    return true
+                } else {
+                    // Email is not good
+                    return false
+                }
+            }
+
+                function validate_password(password) {
+                // Firebase only accepts lengths greater than 6
+                if (password < 6) {
+                    return false
+                } else {
+                    return true
+                }
+            }
+
+                function validate_field(field) {
+                if (field == null) {
+                    return false
+                }
+
+                if (field.length <= 0) {
+                    return false
+                } else {
+                    return true
+                }
+            }
+            
+            
+            
+            
+            // // Initialize Firebase
+            // const app = initializeApp(firebaseConfig);
+            // const database = getDatabase();
+            // const auth = getAuth();
+
+            // // firebase.initializeApp(firebaseConfig);
+            // // // 
+            // // const auth = firebase.auth()
+            // // constdatabase = firebase.database()
+
+
+            // signUp.addEventListener('click', (e) => {
+            //     e.preventDefault();
+
+            // //set up our register function
+            // // function register (){
+            //     //get all our input fields
+            //     let firstname= document.getElementById('firstname').value;
+            //     let lastname= document.getElementById('lastname').value;
+            //     let matric= document.getElementById('matric').value;
+            //     let email = document.getElementById('email').value;
+            //     let password = document.getElementById('password').value;
+            // // }
+
+
+            // function validate_email(email) {
+            //     expression = /^[^@]+@\w+(\.\w+)+\w$/.test(str);
+            //     if (expression.test(email) == true){
+            //         // email is good
+            //         return true
+            //     }
+            //     else{
+            //         // email is not good
+            //         return false
+            //     }
+            // }
+
+            // function validate_field(field) {
+            //     if (expression.test(email) == true){
+            //         // email is good
+            //         return true
+            //     }
+            //     else{
+            //         // email is not good
+            //         return false
+            //     }
+            // }
+
+
+            
+
+            // //     let username = document.getElementById('username').value;
+            // //     let email = document.getElementById('email').value;
+            // //     let password = document.getElementById('password').value;
+
+            //     createUserWithEmailAndPassword(auth, email, password)
+            //     .then((userCredential) => {
+            //         e.preventDefault();
+
+            //     // declare user variables
+
+            //     var users = auth.currentUser
+                
+            //     // Add this user to firebase
+            //     var database_ref = Database.ref()
+
+            //     // create User data
+            //     var user_data = {
+            //         email : email,
+            //         firstname : firstname,
+            //         lastname : lastname,
+            //         matric : matric,
+            //         lastlogin : Date.now()
+
+            //     }
+                
+            //     database_ref.child('users/' + users.uid).set(user_data)
+
+
+
+
+            //     alert("User created")
+
+            //         // Signed in 
+            //         const user = userCredential.user;
+
+            //         swal("SUCCESS!", "User Account Created!", "success");
+            //         console.log("New User Account created");
+
+            //         window.location.assign("admin-view.html");
+            //     })
+            //     .catch((error) => {
+            //         const errorCode = error.code;
+            //         const errorMessage = error.message;
+
+            //         swal("ERROR!", errorMessage , "error");
+            //     });
+            // });
+        </script>
+    </body>
+
+</html>

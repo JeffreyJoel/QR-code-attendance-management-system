@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- <script type="text/javascript">
+            let key = localStorage.getItem("admin");
+
+            if (!key) {
+                window.location = 'index.html';
+            }
+            else{
+                //console.log(key);
+            }
+        </script> -->
+
+    <title>Create New User</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link href="dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
+    <link
+      href="dist-assets/css/plugins/perfect-scrollbar.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist-assets/css/plugins/dropzone.min.css" />
+    <link rel="stylesheet" href="dist-assets/css/plugins/style.css" />
+  </head>
+
+  <body>
+    <div
+      class="auth-layout-wrap"
+      style="
+        background: url(assets/img/section-bg-101.jpg) no-repeat center center
+          fixed;
+        background-size: cover;
+      "
+    >
+      <div class="auth-content">
+        <div class="card o-hidden col-md-6" style="margin: auto">
+          <div class="row">
+            <div class="fix" style="margin: auto">
+              <div class="p-4">
+                <div class="auth-logo text-center mb-4">
+                  <img src="../img/avatar.jpg" alt="" />
+                </div>
+                <div>
+                  <h1 class="mb-3 text-18">CREATE NEW USER ACCOUNT</h1>
+                </div>
+
+                <form>
+                  <div class="form-group">
+                    <label for="username">FIRSTNAME:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="firstname"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="username">LASTNAME:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="lastname"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="username">MATRIC NO:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="matno"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">EMAIL:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="email"
+                      type="email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">PASSWORD:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="password"
+                      type="password"
+                      required
+                    />
+                  </div>
+                  <button
+                    class="btn btn-primary btn-block btn-rounded mt-3"
+                    id="signUp"
+                  >
+                    Create New User
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ Search UI End ============= -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        addDoc,
+        setDoc,
+        doc
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+      import {
+        getAuth, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, createUserWithEmailAndPassword
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+      import {
+        getStorage,
+        ref,
+        getDownloadURL,
+        uploadBytesResumable,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-storage.js";
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
+        authDomain: "covenant-attendance-system.firebaseapp.com",
+        // databaseURL: "https://covenant-attendance-system-default-rtdb.firebaseio.com",
+        projectId: "covenant-attendance-system",
+        storageBucket: "covenant-attendance-system.appspot.com",
+        messagingSenderId: "548597580643",
+        appId: "1:548597580643:web:73d70a20991234cc338956",
+        measurementId: "G-MDZF12Q9XB",
+      };
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase();
+      const auth = getAuth();
+      const db = getFirestore()
+    
+
+      signUp.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // let username = document.getElementById('username').value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let firstname = document.getElementById("firstname").value;
+        let lastname = document.getElementById("lastname").value;
+        let matno = document.getElementById("matno").value;
+
+         createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user; 
+            setDoc(doc(db, "users", user.uid), {
+              Firstname: firstname,
+              Lastname: lastname,
+              Email: email,
+              MatNumber: matno,
+            });
+                        
+          swal("SUCCESS!", "User Account Created!", "success");
+            console.log("New User Account created");
+            // window.location.assign("index.html")
+     
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(error);
+            console.log(email);
+
+            swal("ERROR!", "Wrong Username, Email or Password!", "error");
+          });
+      });
+    </script>
+  </body>
+</html>

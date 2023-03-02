@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Create New User</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="./dist-assets/css/themes/lite-purple.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="./dist-assets/css/plugins/perfect-scrollbar.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist-assets/css/plugins/dropzone.min.css" />
+    <link rel="stylesheet" href="dist-assets/css/plugins/style.css" />
+  </head>
+
+  <body>
+    <div
+      class="auth-layout-wrap"
+      style="
+        background: url(assets/img/section-bg-101.jpg) no-repeat center center
+          fixed;
+        background-size: cover;
+      "
+    >
+      <div class="auth-content">
+        <div class="card o-hidden col-md-6" style="margin: auto">
+          <div class="row">
+            <div class="fix" style="margin: auto">
+              <div class="p-4">
+                <div class="auth-logo text-center mb-4">
+                  <img
+                    src="https://recon.lfcww.org/dist-assets/images/logo.png"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h1 class="mb-3 text-18">CREATE NEW USER ACCOUNT</h1>
+                </div>
+
+                <form>
+                  <div class="form-group">
+                    <label for="username">USERNAME:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="username"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">EMAIL:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="email"
+                      type="email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">PASSWORD:</label>
+                    <input
+                      class="form-control form-control-rounded"
+                      id="password"
+                      type="password"
+                      required
+                    />
+                  </div>
+                  <button
+                    class="btn btn-primary btn-block btn-rounded mt-3"
+                    id="signUp"
+                  >
+                    Create New User
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ Search UI End ============= -->
+    <script src="./dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+    <script src="./dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="./dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./dist-assets/js/scripts/script.min.js"></script>
+    <script src="./dist-assets/js/scripts/sidebar-horizontal.script.js"></script>
+    <script src="./dist-assets/js/plugins/dropzone.min.js"></script>
+    <script src="./dist-assets/js/scripts/dropzone.script.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+import { getDatabase, ref, child, update } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
+          authDomain: "covenant-attendance-system.firebaseapp.com",
+          databaseURL: "https://covenant-attendance-system-default-rtdb.firebaseio.com",
+          projectId: "covenant-attendance-system",
+          storageBucket: "covenant-attendance-system.appspot.com",
+          messagingSenderId: "548597580643",
+          appId: "1:548597580643:web:73d70a20991234cc338956",
+          measurementId: "G-MDZF12Q9XB"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = firebase.auth()
+        const database = firebase.database();
+
+        let signUp = document.getElementById("signUp");
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            signUp.addEventListener("click", (e) => {
+              e.preventDefault();
+      
+              createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                  // Signed in
+                  const user = userCredential.user;
+                  set(ref(database, "users/" + user.uid), {
+                    username: username,
+                    email: email,
+                  });
+      
+                  swal("SUCCESS!", "User Account Created!", "success");
+                  console.log("New User Account created");
+      
+                  window.location.assign("admin-view.html");
+                })
+                .catch((error) => {
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+      
+                  swal("ERROR!", "Wrong Username, Email or Password!", "error");
+                });
+            });
+      </script>
+        <script>
+    
+          </script>
+  </body>
+</html>
