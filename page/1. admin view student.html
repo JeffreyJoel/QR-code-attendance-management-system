@@ -123,14 +123,15 @@
 
 			
 			const firebaseConfig = {
-                apiKey: "AIzaSyCgr78LWyUpCnm_ykOWgeZpICpn_jXYgc8",
-                authDomain: "authentication-app-2059f.firebaseapp.com",
-                databaseURL: "https://authentication-app-2059f-default-rtdb.firebaseio.com",
-                projectId: "authentication-app-2059f",
-                storageBucket: "authentication-app-2059f.appspot.com",
-                messagingSenderId: "937711608289",
-                appId: "1:937711608289:web:e17022ca91c64812b732a0"
-            };
+          apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
+          authDomain: "covenant-attendance-system.firebaseapp.com",
+          databaseURL: "https://covenant-attendance-system-default-rtdb.firebaseio.com",
+          projectId: "covenant-attendance-system",
+          storageBucket: "covenant-attendance-system.appspot.com",
+          messagingSenderId: "548597580643",
+          appId: "1:548597580643:web:73d70a20991234cc338956",
+          measurementId: "G-MDZF12Q9XB"
+        };
 			// Initialize Firebase
 			const app = initializeApp(firebaseConfig);
 			const database = getDatabase(app);
@@ -203,7 +204,7 @@
 			}
 
 			async function getAllDataAtOnce() {
-				const q = query(collection(db, "admin"), orderBy("date", "desc"));
+				const q = query(collection(db, "students"), orderBy("date", "desc"));
 				const querySnapshot = await getDocs(q);
 
 				let admin = [];

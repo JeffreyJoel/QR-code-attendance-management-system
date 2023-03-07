@@ -1,241 +1,277 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registered Students</title>
 
-  <title>Registered Students</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900"
+      rel="stylesheet"
+    />
+    <link
+      href="./dist-assets/css/themes/lite-purple.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="./dist-assets/css/plugins/perfect-scrollbar.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dist-assets/css/plugins/style.css" />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
-  <link href="./dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
-  <link href="./dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./dist-assets/css/plugins/style.css" />
-</head>
-
-<body style="
+  <body
+    style="
       background: url(assets/img/section-bg-101.jpg) no-repeat center center
         fixed;
       background-size: cover;
-    ">
-  <div class="app-admin-wrap layout-horizontal-bar">
-    <div class="main-header">
-      <div class="logo">
-        <img src="../img/logo1.png" alt="" />
-      </div>
-    </div>
-    <div class="main-content-wrap d-flex flex-column">
-      <div class="main-content">
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="breadcrumb">
-              <h1>Registered Students</h1>
-
-              <div style="margin: auto"></div>
-
-              <div>
-                <a href="createNewUser.html">
-                  <button class="btn btn-raised btn-raised-danger m-1" type="button">
-                    Create New User
-                  </button>
-                </a>
-                <button class="btn btn-raised btn-raised-danger m-1" type="button" id="logout">
-                  Log Out
-                </button>
-              </div>
-            </div>
-
-            <div class="separator-breadcrumb border-top"></div>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div class="input-group mb-3">
-                  <!-- searchsection -->
-                  <input id="searchbar" type="text" class="form-control" placeholder="Search Students"
-                    aria-label="Recipient's username" aria-describedby="basic-addon2" />
-
-                  <select class="form-select" id="CategorySelected">
-                    <option selected>By Name</option>
-                    <option value="1">By Matric number</option>
-                    <option value="2">By Email</option>
-                    <option value="3">By Course</option>
-                  </select>
-                  <button id="searchbutton" class="input-group-text" id="searchBtn" type="button">
-                    Search
-                  </button>
-                </div>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Matno</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody1"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2"></div>
+    "
+  >
+    <div class="app-admin-wrap layout-horizontal-bar">
+      <div class="main-header">
+        <div class="logo">
+          <img src="../img/logo1.png" alt="" />
         </div>
       </div>
+      <div class="main-content-wrap d-flex flex-column">
+        <div class="main-content">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="breadcrumb">
+                <h1>Registered Students</h1>
+
+                <div style="margin: auto"></div>
+
+                <div>
+                  <a href="2. admin-upload student.html">
+                    <button
+                      class="btn btn-raised btn-raised-danger m-1"
+                      type="button"
+                    >
+                      Create New User
+                    </button>
+                  </a>
+                  <button
+                    class="btn btn-raised btn-raised-danger m-1"
+                    type="button"
+                    id="logout"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+
+              <div class="separator-breadcrumb border-top"></div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="input-group mb-3">
+                    <!-- searchsection -->
+                    <input
+                      id="searchbar"
+                      type="text"
+                      class="form-control"
+                      placeholder="Search Students"
+                      aria-label="Recipient's username"
+                      aria-describedby="basic-addon2"
+                    />
+
+                    <select class="form-select" id="CategorySelected">
+                      <option selected>By Name</option>
+                      <option value="1">By Matric number</option>
+                      <option value="2">By Email</option>
+                      <option value="3">By Course</option>
+                    </select>
+                    <button
+                      id="searchbutton"
+                      class="input-group-text"
+                      id="searchBtn"
+                      type="button"
+                    >
+                      Search
+                    </button>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Matno</th>
+                          <th scope="col">Course</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbody1"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- ============ Search UI End ============= -->
-  <script src="./dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
-  <script src="./dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
-  <script src="./dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="./dist-assets/js/scripts/script.min.js"></script>
+    <!-- ============ Search UI End ============= -->
+    <script src="./dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+    <script src="./dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="./dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./dist-assets/js/scripts/script.min.js"></script>
 
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
-    import {
-      getDatabase,
-      set,
-      ref,
-      update,
-    } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
-    import {
-      getAuth,
-      signOut,
-    } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
-    import {
-      getFirestore,
-      doc,
-      getDoc,
-      onSnapshot,
-      collection,
-      getDocs,
-      orderBy,
-      query,
-    } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+        deleteDoc,
+        onSnapshot,
+        collection,
+        getDocs,
+        orderBy,
+        query,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
-      authDomain: "covenant-attendance-system.firebaseapp.com",
-      projectId: "covenant-attendance-system",
-      storageBucket: "covenant-attendance-system.appspot.com",
-      messagingSenderId: "548597580643",
-      appId: "1:548597580643:web:73d70a20991234cc338956",
-      measurementId: "G-MDZF12Q9XB"
-    };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
+        authDomain: "covenant-attendance-system.firebaseapp.com",
+        databaseURL:
+          "https://covenant-attendance-system-default-rtdb.firebaseio.com",
+        projectId: "covenant-attendance-system",
+        storageBucket: "covenant-attendance-system.appspot.com",
+        messagingSenderId: "548597580643",
+        appId: "1:548597580643:web:73d70a20991234cc338956",
+        measurementId: "G-MDZF12Q9XB",
+      };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-    const auth = getAuth();
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const db = getFirestore(app);
+      const auth = getAuth();
 
-    let logout = document.getElementById("logout");
+      let logout = document.getElementById("logout");
 
-    logout.addEventListener("click", (e) => {
-      e.preventDefault();
+      logout.addEventListener("click", (e) => {
+        e.preventDefault();
 
-      signOut(auth)
-        .then(() => {
-          //console.log('Admin logged out!!');
-          window.location = "login.html";
+        signOut(auth)
+          .then(() => {
+            //console.log('Admin logged out!!');
+            window.location = "login.html";
 
-          localStorage.clear();
-          // Sign-out successful.
-        })
-        .catch((error) => {
-          // An error happened.
-        });
-    });
+            localStorage.clear();
+            // Sign-out successful.
+          })
+          .catch((error) => {
+            // An error happened.
+          });
+      });
 
-    let stdNo = 0;
-    let tbody = document.getElementById("tbody1");
+      let stdNo = 0;
+      let tbody = document.getElementById("tbody1");
 
-    let addItemToTable = (
-      active,
-      category,
-      date,
-      inactive,
-      title,
-      Matno,
-      Email,
-      index
-    ) => {
-      let tr = document.createElement("tr");
+      let addItemToTable = (
+        active,
+        category,
+        date,
+        inactive,
+        title,
+        Matno,
+        Email,
+        index,
+        id
+      ) => {
+        let tr = document.createElement("tr");
 
-      let th = document.createElement("th");
-      let td1 = document.createElement("td");
-      let td2 = document.createElement("td");
-      let td3 = document.createElement("td");
-      let td4 = document.createElement("td");
-      let td5 = document.createElement("td");
-      let td6 = document.createElement("td");
+        let th = document.createElement("th");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
+        let td5 = document.createElement("td");
+        let td6 = document.createElement("td");
 
-      th.innerHTML = ++stdNo;
-      td1.innerHTML = title;
-      td2.innerHTML = Matno;
-      td3.innerHTML = category;
-      td4.innerHTML = Email;
-      td5.innerHTML = date;
+        th.innerHTML = ++stdNo;
+        td1.innerHTML = title;
+        td2.innerHTML = Matno;
+        td3.innerHTML = category;
+        td4.innerHTML = Email;
+        td5.innerHTML = date;
 
-      td1.classList += "namefield";
-      td2.classList += "Matnofield";
-      td4.classList += "Emailfield";
-      td3.classList += "coursefield";
+        td1.classList += "namefield";
+        td2.classList += "Matnofield";
+        td4.classList += "Emailfield";
+        td3.classList += "coursefield";
 
-      if (active) {
-        td5.innerHTML = '<span class="badge badge-success">Active</span>';
-      } else {
-        td5.innerHTML = '<span class="badge badge-warning">Not Active</span>';
-      }
+        if (active) {
+          td5.innerHTML = '<span class="badge badge-success">Active</span>';
+        } else {
+          td5.innerHTML = '<span class="badge badge-warning">Not Active</span>';
+        }
 
-      td6.innerHTML = `<a class="text-success mr-2" href="#"><i class="nav-icon i-Pen-2 font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter${index}" id="pen-0"></i></a><a class="text-danger mr-2" href="#"><i class="nav-icon i-Close-Window font-weight-bold"></i></a>`;
+        td6.innerHTML = `<a class="text-success mr-2" href="#"><i class="nav-icon i-Pen-2 font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter${index}" id="pen-0"></i></a><a class="text-danger mr-2" ><i class="nav-icon i-Close-Window font-weight-bold" id=${id}></i></a>`;
 
-      tr.appendChild(th);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-      tr.appendChild(td6);
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
 
-      tbody.appendChild(tr);
-    };
+        tbody.appendChild(tr);
+      };
 
-    let addAllItemsToTable = (admin) => {
-      stdNo = 0;
-      tbody.innerHTML = "";
-      admin.forEach((element, index) => {
-        addItemToTable(
-          element.active,
-          element.category,
-          element.date,
-          element.inactive,
-          element.title,
-          element.Matno,
-          element.Email,
-          index
-        );
-        $(".app-admin-wrap").append(`
+      let addAllItemsToTable = (admin) => {
+        stdNo = 0;
+        tbody.innerHTML = "";
+        admin.forEach((element, index, id) => {
+          addItemToTable(
+            element.active,
+            element.category,
+            element.date,
+            element.inactive,
+            element.Firstname + " " + element.Lastname,
+            element.MatNumber,
+            element.Email,
+            index,
+            element.id
+          );
+          // Action function
+          $(`#${element.id}`).click(deleteItem);
+        // End of Action functions
+          $(".app-admin-wrap").append(`
       <div class="modal fade" id="exampleModalCenter${index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -254,16 +290,16 @@
 
                 <div class="form-group mb-3">
                   <label for="email">Student Name:</label>
-                  <input class="form-control" id="titleInput" type="text" name="title" aria-describedby="basic-addon3" value=${element.title}>
+                  <input class="form-control" id="titleInput-update" type="text" name="title" aria-describedby="basic-addon3" value=${element.title}>
                 </div>
                 <div class="form-group mb-3">
                   <label for="email">Matric No.:</label>
-                  <input class="form-control" id="basic-url" type="text" name="Matno" aria-describedby="basic-addon3">
+                  <input class="form-control" id="Matno-update" type="text" name="Matno" aria-describedby="basic-addon3">
                 </div>
 
 				        <div class="form-group mb-3">
                   <label for="email">Course:</label>
-				            <select id="department" class="form-control" name="category">
+				            <select id="department-update" class="form-control" name="category">
                       <option>Select Department</option>
                       <option>Computer and Informantion science</option>
                       <option>Architecture</option>
@@ -273,9 +309,9 @@
 
 				        <div class="form-group">
                   <label for="email">EMAIL:</label>
-                  <input class="form-control" id="email" type="email" required>
+                  <input class="form-control" id="email-update" type="email" required>
                 </div>
-              	<button class="btn btn-raised ripple btn-raised-danger m-1" type="submit" id="send">Upload</button>
+              	<button class="btn btn-raised ripple btn-raised-danger m-1" type="submit" id="send-update">Upload</button>
 				        		</div>
 				    		</div>
 						</div>
@@ -287,74 +323,80 @@
   </div>
 </div>
       `);
-      });
-    };
+        });
+      };
 
-    async function getAllDataAtOnce() {
-      const q = query(collection(db, "admin"), orderBy("date", "desc"));
-      const querySnapshot = await getDocs(q);
-      let userRef = this.database.ref('admin' + userId);
-      let admin = [];
+      async function getAllDataAtOnce() {
+        const q = query(collection(db, "users"));
+        const querySnapshot = await getDocs(q);
+        // let userRef = this.database.ref('admin' + userId);
+        let admin = [];
 
-      querySnapshot.forEach((doc) => {
-        admin.push(doc.data());
-      });
+        querySnapshot.forEach((doc) => {
+          admin.push({ id: doc.id, ...doc.data() });
+          if (admin.length < 1) {
+            console.log("empty");
+          }
+        });
 
-      addAllItemsToTable(admin);
-    }
+        addAllItemsToTable(admin);
+      }
 
-    window.onload = getAllDataAtOnce;
+      window.onload = getAllDataAtOnce;
 
-    var searchbar = document.getElementById("searchbar");
-    var category = document.getElementById("CategorySelected");
-    var searchBtn = document.getElementById("searchBtn");
-    // var textInput = document.getElementById("titleInput").value
+      var searchbar = document.getElementById("searchbar");
+      var category = document.getElementById("CategorySelected");
+      var searchBtn = document.getElementById("searchBtn");
+      // var textInput = document.getElementById("titleInput").value
 
-    function SearchTable(Category) {
-      var filter = searchbar.value.toLowerCase();
-      var tr = tbody.getElementsByTagName("tr");
-      var found;
+      function SearchTable(Category) {
+        var filter = searchbar.value.toLowerCase();
+        var tr = tbody.getElementsByTagName("tr");
+        var found;
 
-      for (let i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByClassName(Category);
+        for (let i = 0; i < tr.length; i++) {
+          var td = tr[i].getElementsByClassName(Category);
 
-        for (let j = 0; j < td.length; j++) {
-          if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-            found = true;
+          for (let j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+              found = true;
+            }
+          }
+          if (found) {
+            tr[i].style.display = "";
+            found = false;
+          } else {
+            tr[i].style.display = "none";
+            found = false;
           }
         }
-        if (found) {
-          tr[i].style.display = "";
-          found = false;
-        } else {
-          tr[i].style.display = "none";
-          found = false;
+      }
+      function searchImplement() {
+        if (searchbar.value.length > 0) {
+          SearchTable("namefield");
+        }
+        if (searchbar.value.length > 0 && category.value == 1) {
+          SearchTable("Matnofield");
+        }
+        if (searchbar.value.length > 0 && category.value == 2) {
+          SearchTable("Emailfield");
+        }
+        if (searchbar.value.length > 0 && category.value == 3) {
+          SearchTable("coursefield");
+        }
+        if (searchbar.value === "") {
+          getAllDataAtOnce();
         }
       }
-    }
-    function searchImplement() {
-      if (searchbar.value.length > 0) {
-        SearchTable("namefield");
-      }
-      if (searchbar.value.length > 0 && category.value == 1) {
-        SearchTable("Matnofield");
-      }
-      if (searchbar.value.length > 0 && category.value == 2) {
-        SearchTable("Emailfield");
-      }
-      if (searchbar.value.length > 0 && category.value == 3) {
-        SearchTable("coursefield");
-      }
-      if (searchbar.value === "") {
-        getAllDataAtOnce();
-      }
+      const deleteItem = async (e) => {
+        let id = e.target.id;
+        await deleteDoc(doc(db, "users", id));
+        console.log("deleted");
+      };
+      // $(`#times${index}`).on("click", console.log($("#titleInput").value))
 
-    }
-    // $("#pen").on("click", console.log($("#titleInput").value))
-
-    $("#searchbutton").on("click", searchImplement);
-    $("#searchbar").on("keyup", searchImplement);
-  </script>
-</body>
-
+      $("#searchbutton").on("click", searchImplement);
+      $("#searchbar").on("keyup", searchImplement);
+    </script>
+  </body>
 </html>

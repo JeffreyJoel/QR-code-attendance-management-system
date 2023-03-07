@@ -67,7 +67,7 @@
 				            			<div class="input-group-prepend">
 				            				<span class="input-group-text" id="basic-addon3">Category</span>
 				            			</div>
-				                		<select id="department" class="form-control" name="category">
+				                		<select id="department" class="form-control" name="category" onchange="shoeFunc">
                                     		<option>Select Category</option>
                                     		<option>Bank Exeat</option>
                                     		<option>Day Exeat</option>
@@ -173,6 +173,9 @@
 
 			// adding documents
 			const addDocument = document.querySelector('.add')
+			function shoeFunc(){		
+			console.log(addDocument.category.value);
+			}
 			addDocument.addEventListener('submit', (e) => {
 				e.preventDefault();
 

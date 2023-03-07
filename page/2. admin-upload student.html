@@ -152,7 +152,7 @@
                     />
                   </div>
 
-                  <div class="input-group mb-3">
+                  <!-- <div class="input-group mb-3">
                     <div class="custom-file">
                       <input
                         class="custom-file-input"
@@ -165,7 +165,7 @@
                         >Choose file</label
                       >
                     </div>
-                  </div>
+                  </div> -->
                   <button
                     class="btn btn-raised ripple btn-raised-danger m-1"
                     type="submit"
@@ -270,7 +270,7 @@
           title: addDocument.title.value,
           Matno: addDocument.Matno.value,
           Email: addDocument.Email.value,
-          file: addDocument.file.value,
+          // file: addDocument.file.value,
           // active: addDocument.active.checked,
           // inactive: addDocument.inactive.checked,
         }).then(() => {
@@ -278,78 +278,27 @@
         });
       });
 
-      // deleting documents
-      /*const deleteDocument = document.querySelector('.add')
-			deleteDocument.addEventListener('submit', (e) => {
-				e.preventDefault()
-			})*/
-
       /////////////* Firebase Storage  *///////////
-      const storage = getStorage(app);
 
-      var file = [];
-      document.getElementById("file").addEventListener("change", function (e) {
-        file = e.target.files;
-      });
-
-      document.getElementById("send").addEventListener("click", function () {
-        //checks if files are selected
-        if (file.length != 0) {
-          //Loops through all the selected files
-          for (let i = 0; i < file.length; i++) {
-            //create a storage reference
-            const storageRef = ref(storage, `/Admin/${file[i].name}`);
-
-            //upload file
-            const upload = uploadBytesResumable(storageRef, file[i]);
-
-            //update progress bar
-            upload.on(
-              "state_changed",
-              function progress(snapshot) {
-                var percentage = Math.round(
-                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                //console.log('Upload is ' + percentage + '% done');
-                if (percentage === 100) {
-                  swal("Uploaded!", "File uploaded!", "success");
-                  window.location = "admin-view.html";
-                } else {
-                  swal(
-                    "Uploading!",
-                    "File uploading, Don't close window!",
-                    "error"
-                  );
-                }
-              },
-              function error() {
-                swal("Error!", "File not uploaded!", "error");
-              }
-            );
-          }
-        } else {
-          swal("No file!", "No file choosen!", "warning");
-        }
-      });
 
       //////////// Firestore //////////////
       const db = getFirestore();
 
       // collection ref
-      const colRef = collection(db, "admin");
+      const colRef = collection(db, "students");
 
       // get collection data
-      getDocs(colRef)
-        .then((snapshot) => {
-          let admin = [];
-          snapshot.docs.forEach((doc) => {
-            admin.push({ ...doc.data(), id: doc.id });
-          });
-          //console.log(admin);
-        })
-        .catch((err) => {
-          //console.log(err.message);
-        });
+      // getDocs(colRef)
+      //   .then((snapshot) => {
+      //     let admin = [];
+      //     snapshot.docs.forEach((doc) => {
+      //       admin.push({ ...doc.data(), id: doc.id });
+      //     });
+      //     //console.log(admin);
+      //   })
+      //   .catch((err) => {
+      //     //console.log(err.message);
+      //   });
     </script>
   </body>
 </html>
