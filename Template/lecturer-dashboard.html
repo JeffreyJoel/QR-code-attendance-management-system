@@ -294,6 +294,7 @@
         import {
             getAuth,
             signOut,
+            onAuthStateChanged
         } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
         import {
             getFirestore,
@@ -330,7 +331,20 @@
         const database = getDatabase(app);
         const db = getFirestore(app);
         const auth = getAuth();
-        const id = 'FHjxbjxHayRq4p2IS5McpZIAyQg1'
+        let id = ''
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                 id = user.uid;
+                console.log(id);
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        })
+
+        
 
         // let logout = document.getElementById("logout");
 
@@ -379,7 +393,7 @@
                 <td>${data.MatNumber}</td>
      
             </tr>`;
-           
+
             });
             getClasses()
 
@@ -401,7 +415,7 @@
             });
 
             // $('#btnAddCol').click(
-                let iter = 0;
+            let iter = 0;
             // function appendColumn() {
             //     tbody1.find('tr').each(function () {
             //         var trow = $(this);
@@ -418,44 +432,44 @@
             var header = $('#header')
             let studentList = []
 
-            classes.forEach((data, index)=>{
+            classes.forEach((data, index) => {
                 students.push(data.students)
-                students.forEach((data, index)=>{
+                students.forEach((data, index) => {
                     studentList.push(data[index])
                 })
                 // console.log(studentList);
                 header.find('tr').each(function () {
                     var trow = $(this);
                     if (trow.index() === 0) {
-                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter+1}</th>`);
-                    } 
+                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter + 1}</th>`);
+                    }
                     else {
                         trow.append('<td>absent</td>');
                     }
 
                 });
 
-                table.find('tr').each( function(num, data) {
+                table.find('tr').each(function (num, data) {
                     var trow = $(this);
                     let sID = data.id
                     // console.log(students[index][sID].present)
                     // console.log(students);
                     if (students[index][sID].present === false) {
                         trow.append('<td>absent</td>');
-                    } 
+                    }
                     else {
                         // console.log(students[index].sID.present);
                         trow.append('<td>present</td>');
                     }
-                // table.find('tr').each(function () {
-                //     var trow = $(this);
-                // console.log(students);
-                //    students.forEach((student)=>{
-                //     console.log(student);
-                 
-                //    })
-               
-                 
+                    // table.find('tr').each(function () {
+                    //     var trow = $(this);
+                    // console.log(students);
+                    //    students.forEach((student)=>{
+                    //     console.log(student);
+
+                    //    })
+
+
 
                 });
                 iter += 1;

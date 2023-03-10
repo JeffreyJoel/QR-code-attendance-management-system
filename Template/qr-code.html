@@ -253,6 +253,7 @@
         import {
             getAuth,
             signOut,
+            onAuthStateChanged
         } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
         import {
             getFirestore,
@@ -290,12 +291,18 @@
         const database = getDatabase(app);
         const db = getFirestore(app);
         const auth = getAuth();
-        let id = "FHjxbjxHayRq4p2IS5McpZIAyQg1";
-        // const urlParams = new URLSearchParams(location.search);
-        // for (const [key, value] of urlParams) {
-        //     id = value;
-        //     // console.log('id', id)
-        // }
+        let id = "";
+        
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                 id = user.uid;
+                console.log(id);
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        })
 
         let admin = [];
         const obj = {}
