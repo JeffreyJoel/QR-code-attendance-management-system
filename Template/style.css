@@ -1,8 +1,6 @@
 
     
 .wrapper{ 
-   
-    max-width: 410px;
     background: #fff;
     border-radius: 7px;
     padding: 16px 25px 0;
@@ -10,10 +8,10 @@
 }
 
 .generated{
-    width: 100vh;
+    width: 100%;
 }
 .qr-code img{
-    width: 50vh;
+    width: 60%;
    display: block;
   margin-left: auto;
   margin-right: auto;
