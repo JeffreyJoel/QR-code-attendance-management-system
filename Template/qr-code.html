@@ -179,6 +179,7 @@
                                         <div class="generated">
                                             <div class="qr-code">
                                                 <img src="qr-code.png" alt="qr-code">
+                                                <p id="loading"></p>
                                             </div>
                                             <div class="random-link"></div>
                                         </div>
@@ -221,20 +222,7 @@
             randomLink = wrapper.querySelector(".random-link");
 
 
-        generateBtn.addEventListener("click", () => {
-            let qrValue = create_random_string(15);
-
-            if (!qrValue) return; // if the input is empty then return from here generateBtn.innerText = "Generating QR Code...";
-            // getting a QR code of user entered value using the qrserver 
-            // api and passing the api returned img src to qrImg
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${qrValue}`;
-            qrImg.addEventListener("load", () => {
-                wrapper.classList.add("active");
-                generateBtn.innerText = "Generated QR Code...";
-                randomLink.innerText = qrValue; // display the generated link in the front end
-            });
-        });
-
+  
         qrInput.addEventListener("keyup", () => {
             if (!qrInput.value) {
                 wrapper.classList.remove("active");
@@ -270,6 +258,7 @@
             getFirestore,
             doc,
             getDoc,
+            addDoc,
             updateDoc,
             deleteDoc,
             onSnapshot,
@@ -309,6 +298,8 @@
         // }
 
         let admin = [];
+        const obj = {}
+        let qrID = ''
         async function getAllDataAtOnce() {
             const q = query(collection(db, "users"));
             const querySnapshot = await getDocs(q);
@@ -316,18 +307,71 @@
 
 
             querySnapshot.forEach((doc) => {
-                admin.push({ id: doc.id, ...doc.data() });
+                admin.push({ id: doc.id, ...doc.data(), present: false });
                 if (admin.length < 1) {
                     console.log("empty");
                 }
-            });
 
-        }
-        const docRef = await addDoc(collection(db, "admins", id, "classes" ), {
-            name: "Tokyo",
-            country: "Japan"
-        });
-        console.log("Document written with ID: ", docRef.id);
+            });
+            console.log(admin);
+
+            admin.forEach((elem, i) => {
+                obj[elem.id] = elem
+            })
+            console.log(obj);
+           if(admin.length > 0){
+            const docRef = await addDoc(collection(db, "admins", id, "classes"), {
+                class: "Tokyo",
+                week: "Japan",
+                students: obj
+            })
+                qrID = docRef.id
+            //     .catch((err) => {
+            //     console.log(err);
+            // });
+                console.log(qrID, docRef.id);
+
+           }
+            
+        };
+
+        // const wrapper = document.querySelector(".wrapper"),
+        //     qrInput = wrapper.querySelector(".form input"),
+        //     generateBtn = wrapper.querySelector(".form button"),
+        //     qrImg = wrapper.querySelector(".qr-code img"),
+        //     randomLink = wrapper.querySelector(".random-link");
+
+
+        // generateBtn.addEventListener("click", () => {
+        //     let qrValue = create_random_string(15);
+
+        //     if (!qrValue) return; // if the input is empty then return from here generateBtn.innerText = "Generating QR Code...";
+        //     // getting a QR code of user entered value using the qrserver 
+        //     // api and passing the api returned img src to qrImg
+        //     qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${qrValue}`;
+        //     qrImg.addEventListener("load", () => {
+        //         wrapper.classList.add("active");
+        //         generateBtn.innerText = "Generated QR Code...";
+        //         randomLink.innerText = qrValue; // display the generated link in the front end
+        //     });
+        // });
+
+
+   
+        window.onload = getAllDataAtOnce()
+        // const obj = {}
+        // console.log(admin);
+
+        // admin.forEach((elem, i) => {
+        //     obj[i] = elem
+        // })
+        // console.log(obj);
+        // const docRef = await addDoc(collection(db, "admins", id, "classes"), {
+        //     name: "Tokyo",
+        //     country: "Japan"
+        //     // students:
+        // });
+        // console.log("Document written with ID: ", docRef.id);
 
     </script>
     <script>

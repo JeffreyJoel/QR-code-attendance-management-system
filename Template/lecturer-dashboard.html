@@ -190,7 +190,7 @@
 
                             <div class="row">
                                 <div class="col-lg-6 col-7">
-                                    <h6>Students</h6>
+                                    <h6>datas</h6>
                                     <!-- <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     <-- <span class="font-weight-bold ms-1">30 done</span> this month -
@@ -207,7 +207,7 @@
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Create
                                                     User</a></li>
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Create
-                                                    Student</a></li>
+                                                    data</a></li>
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Something
                                                     else here</a></li>
                                         </ul>
@@ -220,7 +220,7 @@
                             <!-- <div class="card-body"> -->
                             <div class="input-group input-group-outline row">
                                 <input type="text " id="searchbar" class="form-control col-12 col-md-6"
-                                    placeholder="Search Students">
+                                    placeholder="Search datas">
                                 <div class="input-group-append col-12 col-md-6 d-flex justify-content-between">
                                     <select class="form-select w-50 col-3" id="CategorySelected">
                                         <option selected>By Name</option>
@@ -238,8 +238,8 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
+                            <table class="table align-items-center mb-0" id="table">
+                                <thead id="header">
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                                             scope="col">#</th>
@@ -248,18 +248,9 @@
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                                             scope="col">Matno
                                         </th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Course
-                                        </th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Email
-                                        </th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Status
-                                        </th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+                                        <!-- <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                                             scope="col">Action
-                                        </th>
+                                        </th> -->
                                     </tr>
                                 </thead>
                                 <tbody id="tbody1"></tbody>
@@ -339,6 +330,7 @@
         const database = getDatabase(app);
         const db = getFirestore(app);
         const auth = getAuth();
+        const id = 'FHjxbjxHayRq4p2IS5McpZIAyQg1'
 
         // let logout = document.getElementById("logout");
 
@@ -361,80 +353,8 @@
         let stdNo = 0;
         let tbody1 = document.getElementById("tbody1");
 
-        let addItemToTable = (
-            active,
-            category,
-            date,
-            inactive,
-            title,
-            Matno,
-            Email,
-            index,
-            id
-        ) => {
-            let tr = document.createElement("tr");
-
-            let th = document.createElement("th");
-            let td1 = document.createElement("td");
-            let td2 = document.createElement("td");
-            let td3 = document.createElement("td");
-            let td4 = document.createElement("td");
-            let td5 = document.createElement("td");
-            let td6 = document.createElement("td");
-
-            th.innerHTML = ++stdNo;
-            td1.innerHTML = title;
-            td2.innerHTML = Matno;
-            td3.innerHTML = category;
-            td4.innerHTML = Email;
-            td5.innerHTML = date;
-
-            td1.classList += "namefield";
-            td2.classList += "Matnofield";
-            td4.classList += "Emailfield";
-            td3.classList += "coursefield";
-
-            if (active) {
-                td5.innerHTML = '<span class="badge bg-success">Active</span>';
-            } else {
-                td5.innerHTML = '<span class="badge bg-warning">Not Active</span>';
-            }
-
-            td6.innerHTML = `<div class="d-flex justify-content-center"><a class="text-success mx-2" href="#">
-        <i class="material-icons" data-bs-toggle="modal" data-bs-target="#exampleModalCenter${index}" id="pen-0">edit</i></a><a class="text-danger mr-2 href="#" ><i class="material-icons" id=${id}>close</i></a></div>`;
-
-            tr.appendChild(th);
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            tr.appendChild(td5);
-            tr.appendChild(td6);
-
-            tbody1.appendChild(tr);
-        };
-
-        let addAllItemsToTable = (admin) => {
-            stdNo = 0;
-            tbody1.innerHTML = "";
-            admin.forEach((element, index, id) => {
-                addItemToTable(
-                    element.active,
-                    element.Course,
-                    element.date,
-                    element.inactive,
-                    element.Firstname + " " + element.Lastname,
-                    element.MatNumber,
-                    element.Email,
-                    index,
-                    element.id
-                );
-                // Action function
-                $(`#${element.id}`).click(deleteItem);
 
 
-            });
-        }
 
         async function getAllDataAtOnce() {
             const q = query(collection(db, "users"));
@@ -446,14 +366,102 @@
                 admin.push({ id: doc.id, ...doc.data() });
                 if (admin.length < 1) {
                     console.log("empty");
+
                 }
+                console.log(admin);
             });
 
-            addAllItemsToTable(admin);
+            admin.forEach((data, index) => {
 
+                tbody1.innerHTML += `<tr id=${data.id}>
+                <td>${index + 1}</td>
+                <td>${data.Firstname + ' ' + data.Lastname}</td>
+                <td>${data.MatNumber}</td>
+     
+            </tr>`;
+           
+            });
+            getClasses()
 
         }
 
+        async function getClasses() {
+            const q = query(collection(db, "admins", id, "classes"));
+            const querySnapshot = await getDocs(q);
+            // let userRef = this.database.ref('admin' + userId);
+            let classes = [];
+            let students = [];
+            querySnapshot.forEach((doc) => {
+                classes.push({ id: doc.id, ...doc.data() });
+                if (classes.length < 1) {
+                    console.log("empty");
+
+                }
+                // console.log(classes);
+            });
+
+            // $('#btnAddCol').click(
+                let iter = 0;
+            // function appendColumn() {
+            //     tbody1.find('tr').each(function () {
+            //         var trow = $(this);
+            //         if (trow.index() === 0) {
+            //             trow.append('<td>Col' + iter + '</td>');
+            //         } else {
+            //             trow.append('<td><input type="checkbox" name="cb' + iter + '"/></td>');
+            //         }
+
+            //     });
+            //     iter += 1;
+            // };
+            var table = $('#tbody1')
+            var header = $('#header')
+            let studentList = []
+
+            classes.forEach((data, index)=>{
+                students.push(data.students)
+                students.forEach((data, index)=>{
+                    studentList.push(data[index])
+                })
+                // console.log(studentList);
+                header.find('tr').each(function () {
+                    var trow = $(this);
+                    if (trow.index() === 0) {
+                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter+1}</th>`);
+                    } 
+                    else {
+                        trow.append('<td>absent</td>');
+                    }
+
+                });
+
+                table.find('tr').each( function(num, data) {
+                    var trow = $(this);
+                    let sID = data.id
+                    // console.log(students[index][sID].present)
+                    // console.log(students);
+                    if (students[index][sID].present === false) {
+                        trow.append('<td>absent</td>');
+                    } 
+                    else {
+                        // console.log(students[index].sID.present);
+                        trow.append('<td>present</td>');
+                    }
+                // table.find('tr').each(function () {
+                //     var trow = $(this);
+                // console.log(students);
+                //    students.forEach((student)=>{
+                //     console.log(student);
+                 
+                //    })
+               
+                 
+
+                });
+                iter += 1;
+            })
+
+        }
         window.onload = getAllDataAtOnce;
 
         var searchbar = document.getElementById("searchbar");
@@ -500,12 +508,7 @@
                 getAllDataAtOnce();
             }
         }
-        const deleteItem = async (e) => {
-            let id = e.target.id;
-            await deleteDoc(doc(db, "users", id));
-            console.log("deleted");
-            getAllDataAtOnce()
-        };
+
 
 
 
