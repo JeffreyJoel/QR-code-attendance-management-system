@@ -215,7 +215,10 @@
                     </th>
                     <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Course
                     </th>
+                 
                     <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Email
+                    </th>
+                    <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Level
                     </th>
                     <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" scope="col">Status
                     </th>
@@ -332,7 +335,8 @@
       Matno,
       Email,
       index,
-      id
+      id,
+      Level
     ) => {
       let tr = document.createElement("tr");
 
@@ -343,6 +347,7 @@
       let td4 = document.createElement("td");
       let td5 = document.createElement("td");
       let td6 = document.createElement("td");
+      let td7 = document.createElement('td')
 
       th.innerHTML = ++stdNo;
       td1.innerHTML = title;
@@ -350,11 +355,13 @@
       td3.innerHTML = category;
       td4.innerHTML = Email;
       td5.innerHTML = date;
+      td7.innerHTML = Level;
 
       td1.classList += "namefield";
       td2.classList += "Matnofield";
       td4.classList += "Emailfield";
       td3.classList += "coursefield";
+      td7.classList += "Levelfield";
 
       if (active) {
         td5.innerHTML = '<span class="badge bg-success">Active</span>';
@@ -370,6 +377,7 @@
       tr.appendChild(td2);
       tr.appendChild(td3);
       tr.appendChild(td4);
+      tr.appendChild(td7);
       tr.appendChild(td5);
       tr.appendChild(td6);
 
@@ -389,7 +397,8 @@
           element.MatNumber,
           element.Email,
           index,
-          element.id
+          element.id,
+          element?.Level
         );
         // Action function
 

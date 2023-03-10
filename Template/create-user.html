@@ -154,6 +154,12 @@
                                         <input type="text" class="form-control" id="matnum-edit">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="form-label">Level</label>
+                                    <div class="input-group input-group-outline ">
+                                        <input type="number" class="form-control" id="level">
+                                    </div>
+                                    </div>
 
                                 <div class="form-group my-3">
                                     <label for="email">Course:</label>
@@ -263,6 +269,7 @@
         let matnum = document.getElementById('matnum-edit')
         let email = document.getElementById('email-edit')
         let course = document.getElementById('department-edit')
+        let level =  document.getElementById('level')
         const addDocument = document.querySelector('.form')
         let department
         $("#department-edit").change(function () {
@@ -282,7 +289,8 @@
                 Lastname: lastname.value,
                 Email: email.value,
                 MatNumber: matnum.value,
-                Course: department
+                Course: department,
+                Level: level.value
             })
             console.log("successful");
             window.location = "dashboard.html";
