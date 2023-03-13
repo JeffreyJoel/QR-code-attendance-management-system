@@ -169,7 +169,13 @@
                                     <div class="wrapper">
 
                                         <div class="form">
-                                            <!-- <input type="text" placeholder="Enter text or url">  -->
+                                            <div class="form-group mb-3">
+                                                <!-- <label class="form-label">Email</label> -->
+                                                <div class="input-group input-group-outline">
+                                                    <input type="text" class="form-control w-50" id="week"
+                                                        placeholder="Enter week" />
+                                                </div>
+                                            </div>
                                             <button id="searchbutton" class="  btn btn-outline-primary mb-5"
                                                 id="searchBtn" type="button">
                                                 Generate Code
@@ -292,6 +298,8 @@
         const auth = getAuth();
         let id = "";
 
+        let week = document.getElementById('')
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 id = user.uid;
@@ -318,15 +326,6 @@
 
         window.onload = getCourseData()
         async function getAllDataAtOnce() {
-            // //get course data
-            // const docRef = doc(db, "courses", id);
-            // const snapshot = await getDoc(docRef);
-            // if (snapshot.exists()) {
-            //     console.log(snapshot.data());
-            //     course = snapshot.data()
-            //     $("#courseTitle").text(`${data.Course}`)
-            // }
-            // //end of get course data
 
             const q = query(collection(db, "users"));
             const querySnapshot = await getDocs(q);
