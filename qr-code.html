@@ -164,8 +164,7 @@
                         <div class="card-body">
                             <!-- <div class="card-body"> -->
                             <div class="input-group input-group-outline row">
-                                <!-- <input type="text " id="searchbar" class="form-control col-12 col-md-6"
-                                    placeholder="Enter link"> -->
+                                <h4 id="classTitle"></h4>
                                 <div class="">
                                     <div class="wrapper">
 
@@ -222,7 +221,7 @@
             randomLink = wrapper.querySelector(".random-link");
 
 
-  
+
         qrInput.addEventListener("keyup", () => {
             if (!qrInput.value) {
                 wrapper.classList.remove("active");
@@ -292,11 +291,11 @@
         const db = getFirestore(app);
         const auth = getAuth();
         let id = "";
-        
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                 id = user.uid;
-                console.log(id);
+                id = user.uid;
+                console.log(user);
                 // ...
             } else {
                 // User is signed out
@@ -306,8 +305,29 @@
 
         let admin = [];
         const obj = {}
+        let course = {}
         let qrID = ''
+
+        async function getCourseData() {
+            let data = JSON.parse(localStorage.getItem('courseData'))
+            course = data
+            $("#classTitle").text(`${course.Course}`)
+            console.log(data);
+        }
+
+
+        window.onload = getCourseData()
         async function getAllDataAtOnce() {
+            // //get course data
+            // const docRef = doc(db, "courses", id);
+            // const snapshot = await getDoc(docRef);
+            // if (snapshot.exists()) {
+            //     console.log(snapshot.data());
+            //     course = snapshot.data()
+            //     $("#courseTitle").text(`${data.Course}`)
+            // }
+            // //end of get course data
+
             const q = query(collection(db, "users"));
             const querySnapshot = await getDocs(q);
             // let userRef = this.database.ref('admin' + userId);
@@ -324,24 +344,26 @@
                 obj[elem.id] = elem
             })
             console.log(obj);
-           if(admin.length > 0){
-            const docRef = await addDoc(collection(db, "admins", id, "classes"), {
-                class: "Tokyo",
-                week: "Japan",
-                students: obj
-            })
+            if (admin.length > 0) {
+                const docRef = await addDoc(collection(db, "courses", id, "classes"), {
+                    class: course.Course,
+                    week: "Japan",
+                    students: obj
+                })
                 qrID = docRef.id
-            //     .catch((err) => {
-            //     console.log(err);
-            // });
+                //     .catch((err) => {
+                //     console.log(err);
+                // });
                 console.log(qrID, docRef.id);
                 generateQR()
-           }
-            
+            }
+
         };
 
 
-    const generateQR = () => {
+
+
+        const generateQR = () => {
             let qrValue = `https://example.com?classId=${qrID}?lecturerId=${id}`;
 
             if (!qrValue || !qrID) return; // if the input is empty then return from here generateBtn.innerText = "Generating QR Code...";
@@ -355,7 +377,8 @@
             });
         };
 
-       generateBtn.addEventListener("click", getAllDataAtOnce )
+        generateBtn.addEventListener("click", getAllDataAtOnce)
+
 
 
     </script>

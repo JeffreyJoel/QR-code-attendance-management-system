@@ -190,7 +190,7 @@
 
                             <div class="row">
                                 <div class="col-lg-6 col-7">
-                                    <h6>datas</h6>
+                                    <h6 id="tableTitle"></h6>
                                     <!-- <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     <-- <span class="font-weight-bold ms-1">30 done</span> this month -
@@ -220,7 +220,7 @@
                             <!-- <div class="card-body"> -->
                             <div class="input-group input-group-outline row">
                                 <input type="text " id="searchbar" class="form-control col-12 col-md-6"
-                                    placeholder="Search datas">
+                                    placeholder="Search ">
                                 <div class="input-group-append col-12 col-md-6 d-flex justify-content-between">
                                     <select class="form-select w-50 col-3" id="CategorySelected">
                                         <option selected>By Name</option>
@@ -335,7 +335,7 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                 id = user.uid;
+                id = user.uid;
                 console.log(id);
                 // ...
             } else {
@@ -344,7 +344,7 @@
             }
         })
 
-        
+
 
         // let logout = document.getElementById("logout");
 
@@ -371,6 +371,7 @@
 
 
         async function getAllDataAtOnce() {
+
             const q = query(collection(db, "users"));
             const querySnapshot = await getDocs(q);
             // let userRef = this.database.ref('admin' + userId);
@@ -395,12 +396,23 @@
             </tr>`;
 
             });
+
+            const docRef = doc(db, "courses", id);
+            const snapshot = await getDoc(docRef);
+            if (snapshot.exists()) {
+                console.log(snapshot.data());
+                let data = {}
+                data = snapshot.data()
+                $("#tableTitle").text(`${data.Course}`)
+                localStorage.setItem("courseData", JSON.stringify(data))
+            }
             getClasses()
 
         }
 
         async function getClasses() {
-            const q = query(collection(db, "admins", id, "classes"));
+
+            const q = query(collection(db, "courses", id, "classes"));
             const querySnapshot = await getDocs(q);
             // let userRef = this.database.ref('admin' + userId);
             let classes = [];

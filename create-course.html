@@ -39,20 +39,7 @@
                 <div class="card-body">
                   <form role="form">
                     <div class="form-group mb-3">
-                      <label class="form-label">Firstname</label>
-                      <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="firstname">
-                      </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label class="form-label">Lastname</label>
-                      <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="lastname">
-                      </div>
-                    </div>
-                    <div class="form-group mb-3">
-                      <label class="form-label">Email</label>
+                      <label class="form-label">Course Email</label>
                       <div class="input-group input-group-outline ">
                         <input type="text" class="form-control" id="email">
                       </div>
@@ -66,27 +53,15 @@
                     </div>
 
                     <div class="form-group mb-3">
-                      <label class="form-label">Courses</label>
+                      <label class="form-label">Course</label>
                       <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="courseText">
-                        <span class="btn btn-outline-primary mb-0" id="courseBtn">Add</span>
+                        <input type="text" class="form-control" id="course">
                       </div>
                     </div>
-                    <div class="form-group mb-3">
-                      <label class="form-label">Courses Added</label>
-                      <ul class="input-group input-group-outline d-flex ps-0" id="list">
-
-                      </ul>
-                    </div>
-                    <!-- <div class="form-check form-check-info text-start ps-0">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                      <label class="form-check-label" for="flexCheckDefault">
-                        I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                      </label>
-                    </div> -->
+           
                     <div class="text-center">
                       <button type="button" id="signUp"
-                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
+                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Create</button>
                     </div>
                   </form>
                 </div>
@@ -157,30 +132,7 @@
     const auth = getAuth();
     const db = getFirestore()
 
-    let courses = []
-    let courseText = document.getElementById('courseText')
-
-    const myList = document.getElementById("list");
-
-    function updateList() {
-      myList.innerHTML = ""; // clear list
-
-      courses.forEach((item) => {
-        const li = document.createElement("li");
-        li.classList += "btn btn-outline-primary me-2 ms-0"
-        li.textContent = item;
-        myList.appendChild(li);
-      });
-    }
-    updateList();
-
-    $('#courseBtn').on('click', (e) => {
-      // e.preventDefault()
-      courses.push(courseText.value)
-      console.log(courses);
-
-      updateList();
-    })
+ 
     //  function showCourses(){
     //   courses.forEach(element => {
     //  $('#list').append(`<li class="btn btn-outline-primary mr-2 ml-0">${element}</li>`)
@@ -197,29 +149,26 @@
       // let username = document.getElementById('username').value;
       let email = document.getElementById("email").value;
       let password = document.getElementById("password").value;
-      let firstname = document.getElementById("firstname").value;
-      let lastname = document.getElementById("lastname").value;
-
-      // let matno = document.getElementById("matno").value;
+      let course = document.getElementById("course").value;
+    
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          setDoc(doc(db, "admins", user.uid), {
-            Firstname: firstname,
-            Lastname: lastname,
+          setDoc(doc(db, "courses", user.uid), {
+            Course:course,
             Email: email,
             isSuperAdmin: false,
-            // Courses: courses
+            password: password
           });
 
           swal("SUCCESS!", "User Account Created!", "success").then(
 
             setTimeout(() => {
-              window.location = "lecturer-dashboard.html"
-            }, 7000)
+              window.location = "dashboard.html"
+            }, 5000)
           );
-          console.log("New User Account created");
+          console.log("New Course created");
           // window.location = "lecturer-dashboard.html";
 
         })

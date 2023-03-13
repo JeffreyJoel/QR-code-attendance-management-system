@@ -7,11 +7,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-    Register
+   Register
   </title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -29,7 +28,7 @@
       <div class="page-header min-vh-100">
         <div class="container">
           <div class="row">
-
+            
             <div class="col-md-7 d-flex flex-column mx-auto">
               <div class="card card-plain">
                 <div class="card-header">
@@ -41,43 +40,29 @@
                     <div class="form-group mb-3">
                       <label class="form-label">Firstname</label>
                       <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="firstname">
+                          <input type="text" class="form-control" id="firstname">
                       </div>
-                    </div>
+                  </div>
 
-                    <div class="form-group mb-3">
+                  <div class="form-group mb-3">
                       <label class="form-label">Lastname</label>
                       <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="lastname">
+                          <input type="text" class="form-control" id="lastname">
                       </div>
-                    </div>
-                    <div class="form-group mb-3">
-                      <label class="form-label">Email</label>
-                      <div class="input-group input-group-outline ">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-label">Email</label>
+                    <div class="input-group input-group-outline ">
                         <input type="text" class="form-control" id="email">
-                      </div>
-
                     </div>
-                    <div class="form-group mb-3">
-                      <label class="form-label">Password</label>
-                      <div class="input-group input-group-outline ">
+
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Password</label>
+                    <div class="input-group input-group-outline ">
                         <input type="text" class="form-control" id="password">
-                      </div>
                     </div>
-
-                    <div class="form-group mb-3">
-                      <label class="form-label">Courses</label>
-                      <div class="input-group input-group-outline ">
-                        <input type="text" class="form-control" id="courseText">
-                        <span class="btn btn-outline-primary mb-0" id="courseBtn">Add</span>
-                      </div>
-                    </div>
-                    <div class="form-group mb-3">
-                      <label class="form-label">Courses Added</label>
-                      <ul class="input-group input-group-outline d-flex ps-0" id="list">
-
-                      </ul>
-                    </div>
+                </div>
                     <!-- <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                       <label class="form-check-label" for="flexCheckDefault">
@@ -85,8 +70,7 @@
                       </label>
                     </div> -->
                     <div class="text-center">
-                      <button type="button" id="signUp"
-                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
+                      <button type="button" id="signUp" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
                     </div>
                   </form>
                 </div>
@@ -104,7 +88,6 @@
     </section>
   </main>
   <!--   Core JS Files   -->
-  <script src="assets/js/plugins/jquery-3.3.1.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -156,42 +139,9 @@
     const database = getDatabase();
     const auth = getAuth();
     const db = getFirestore()
-
-    let courses = []
-    let courseText = document.getElementById('courseText')
-
-    const myList = document.getElementById("list");
-
-    function updateList() {
-      myList.innerHTML = ""; // clear list
-
-      courses.forEach((item) => {
-        const li = document.createElement("li");
-        li.classList += "btn btn-outline-primary me-2 ms-0"
-        li.textContent = item;
-        myList.appendChild(li);
-      });
-    }
-    updateList();
-
-    $('#courseBtn').on('click', (e) => {
-      // e.preventDefault()
-      courses.push(courseText.value)
-      console.log(courses);
-
-      updateList();
-    })
-    //  function showCourses(){
-    //   courses.forEach(element => {
-    //  $('#list').append(`<li class="btn btn-outline-primary mr-2 ml-0">${element}</li>`)
-    //   })
-    //  };
-
-
-
-
-    var signUp = document.getElementById('signUp')
-    signUp.addEventListener("click", (e) => {
+  
+var signUp = document.getElementById('signUp')
+signUp.addEventListener("click", (e) => {
       e.preventDefault();
 
       // let username = document.getElementById('username').value;
@@ -199,29 +149,27 @@
       let password = document.getElementById("password").value;
       let firstname = document.getElementById("firstname").value;
       let lastname = document.getElementById("lastname").value;
-
       // let matno = document.getElementById("matno").value;
 
-      createUserWithEmailAndPassword(auth, email, password)
+       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
+          const user = userCredential.user; 
           setDoc(doc(db, "admins", user.uid), {
             Firstname: firstname,
             Lastname: lastname,
             Email: email,
-            isSuperAdmin: false,
-            // Courses: courses
+            isSuperAdmin: true
           });
-
-          swal("SUCCESS!", "User Account Created!", "success").then(
-
-            setTimeout(() => {
+                      
+        swal("SUCCESS!", "User Account Created!", "success").then(
+        
+          setTimeout(() => {
               window.location = "lecturer-dashboard.html"
-            }, 7000)
-          );
+          }, 10000)
+        );
           console.log("New User Account created");
           // window.location = "lecturer-dashboard.html";
-
+   
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -232,7 +180,7 @@
           swal("ERROR!", "Wrong Username, Email or Password!", "error");
         });
     });
-  </script>
+    </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
