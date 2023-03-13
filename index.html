@@ -36,7 +36,9 @@
                 <div class="card-body">
                   <form role="form">
                     <div class="form-group mb-3">
-                      <label class="form-label">Email</label>
+                      <label class="form-label">Username <i class="material-icons opacity-10" style="font-size: 15px;"
+                          data-toggle="tooltip" data-placement="top"
+                          title="your username are the characters before the @sign in your email">info</i></label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" id="email" />
                       </div>
@@ -135,85 +137,72 @@
       e.preventDefault();
 
       // let username = document.getElementById('username').value;
-      let email = document.getElementById("email").value;
+      let email = document.getElementById("email").value.toLowerCase();
       let password = document.getElementById("password").value;
-      // let firstname = document.getElementById("firstname").value;
-      // let lastname = document.getElementById("lastname").value;
-      // let matno = document.getElementById("matno").value;
-      // const citiesRef = collection(db, "admins");
-      // const q1 = query(citiesRef, where("isSuperAdmin", "==", "true"));
-      await signInWithEmailAndPassword(auth, email, password).then(
+      console.log(email)
+  try {
+    await signInWithEmailAndPassword(auth, `${email}@gmail.com`, password).then(
         (userCredential) => {
           // Signed in
           const user = userCredential.user;
+          console.log(user);
           validateUser(user.uid)
+
         }
+
       );
-      async function validateUser(id) {
+  } catch (error) {
+    swal("ERROR!", "User not found", "error");
+  }
 
-        try {
-          const docRef = doc(db, "admins", id);
-          const snapshot = await getDoc(docRef);
-          let data = {}
-          if (snapshot.exists()) {
-            console.log("Document data:", snapshot.data());
-            data = snapshot.data();
-            console.log(data);
-            if (data.isSuperAdmin === true) {
-              swal("SUCCESS!", "LoggedIn", "success").then(
-                setTimeout(() => {
-                  window.location = `dashboard.html?id=${id}`;
-                }, 500)
-              );
-            }
-            // ...
-          }
-          else {
-            const docRef = doc(db, "course", id);
-            const snapshot = await getDoc(docRef);
-
-            if (snapshot.exists()) {
-              console.log("Document data:", snapshot.data());
-              data = snapshot.data();
-              console.log(data);
-              swal("SUCCESS!", "LoggedIn", "success").then(
-                setTimeout(() => {
-                  window.location = `lecturer-dashboard.html?id=${id}`;
-                }, 500)
-              );
-            }
-            else{
-              swal("ERROR!", "User not found", "error");
-            }
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      //   setDoc(doc(db, "lecturers", id), {
-      //     Firstname: firstname,
-      //     Lastname: lastname,
-      //     Email: email,
-      //   });
-
-      // swal("SUCCESS!", "User Account Created!", "success").then(
-
-      //   setTimeout(() => {
-      //     window.location = `lecturer-dashboard.html?${id}`
-      //   }, 500)
-      // );
-      // console.log("ERROR!", "New User Account created", "error");
-      // window.location = "lecturer-dashboard.html";
-
-      // })
-      // .catch((error) => {
-      //   const errorCode = error.code;
-      //   const errorMessage = error.message;
-      //   console.log(error);
-      //   // console.log(email);
-
-      //   swal("ERROR!", "Wrong Username, Email or Password!", "error");
     });
+
+    async function validateUser(id) {
+
+      try {
+        const docRef = doc(db, "admins", id);
+        const snapshot = await getDoc(docRef);
+        let data = {}
+        if (snapshot.exists()) {
+          console.log("Document data:", snapshot.data());
+          data = snapshot.data();
+          console.log(data);
+          if (data.isSuperAdmin === true) {
+            swal("SUCCESS!", "LoggedIn", "success").then(
+              setTimeout(() => {
+                window.location = `dashboard.html?id=${id}`;
+              }, 500)
+            );
+          }
+          // ...
+        }
+        else {
+          const ndocRef = doc(db, "course", id);
+          const nsnapshot = await getDoc(ndocRef);
+
+          // if (nsnapshot.exists()) {
+          console.log("Document data:", nsnapshot.data());
+          data = nsnapshot.data();
+          console.log(data);
+          swal("SUCCESS!", "LoggedIn", "success").then(
+            setTimeout(() => {
+              window.location = `lecturer-dashboard.html?id=${id}`;
+            }, 500)
+          );
+          // }
+          // else {
+          //   swal("ERROR!", "User not found", "error");
+          // }
+        }
+
+        // else {
+        //   swal("ERROR!", "User not found", "error");
+        // }
+      } catch (err) {
+        console.log(err);
+        swal("ERROR!", "User not found", "error");
+      }
+    }
       // });
   </script>
   <script>

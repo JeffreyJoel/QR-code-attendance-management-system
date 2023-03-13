@@ -228,20 +228,20 @@
 
 
 
-        qrInput.addEventListener("keyup", () => {
-            if (!qrInput.value) {
-                wrapper.classList.remove("active");
-            }
-        });
+        // qrInput.addEventListener("keyup", () => {
+        //     if (!qrInput.value) {
+        //         wrapper.classList.remove("active");
+        //     }
+        // });
 
-        function create_random_string(string_length) {
-            var random_string = '';
-            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'
-            for (var i, i = 0; i < string_length; i++) {
-                random_string += characters.charAt(Math.floor(Math.random() * characters.length))
-            }
-            return `https://example.com/${qrID}`;
-        }
+        // function create_random_string(string_length) {
+        //     var random_string = '';
+        //     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'
+        //     for (var i, i = 0; i < string_length; i++) {
+        //         random_string += characters.charAt(Math.floor(Math.random() * characters.length))
+        //     }
+        //     return `https://example.com/${qrID}`;
+        // }
     </script>
 
 
@@ -272,6 +272,7 @@
             getDocs,
             orderBy,
             query,
+            serverTimestamp
         } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -298,7 +299,7 @@
         const auth = getAuth();
         let id = "";
 
-        let week = document.getElementById('')
+        let week = document.getElementById('week')
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -346,13 +347,12 @@
             if (admin.length > 0) {
                 const docRef = await addDoc(collection(db, "courses", id, "classes"), {
                     class: course.Course,
-                    week: "Japan",
-                    students: obj
+                    week: week.value,
+                    students: obj,
+                    Date: serverTimestamp()
                 })
                 qrID = docRef.id
-                //     .catch((err) => {
-                //     console.log(err);
-                // });
+                console.log(week.value);
                 console.log(qrID, docRef.id);
                 generateQR()
             }
