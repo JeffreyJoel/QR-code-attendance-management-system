@@ -52,19 +52,9 @@
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">view_in_ar</i>
                         </div>
-                        <span class="nav-link-text ms-1">Generate QR code</span>
+                        <span class="nav-link-text ms-1">Create Class</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li> -->
-
-
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
@@ -428,18 +418,7 @@
 
             // $('#btnAddCol').click(
             let iter = 0;
-            // function appendColumn() {
-            //     tbody1.find('tr').each(function () {
-            //         var trow = $(this);
-            //         if (trow.index() === 0) {
-            //             trow.append('<td>Col' + iter + '</td>');
-            //         } else {
-            //             trow.append('<td><input type="checkbox" name="cb' + iter + '"/></td>');
-            //         }
-
-            //     });
-            //     iter += 1;
-            // };
+            
             var table = $('#tbody1')
             var header = $('#header')
             let studentList = []
@@ -473,16 +452,6 @@
                         // console.log(students[index].sID.present);
                         trow.append('<td>present</td>');
                     }
-                    // table.find('tr').each(function () {
-                    //     var trow = $(this);
-                    // console.log(students);
-                    //    students.forEach((student)=>{
-                    //     console.log(student);
-
-                    //    })
-
-
-
                 });
                 iter += 1;
             })
@@ -535,11 +504,6 @@
             }
         }
 
-
-
-
-
-        // $(`#times${index}`).on("click", console.log($("#titleInput").value))
 
         $("#searchbutton").on("click", searchImplement);
         $("#searchbar").on("keyup", searchImplement);

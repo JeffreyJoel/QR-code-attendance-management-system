@@ -31,17 +31,14 @@
                     <div class="row">
 
                         <div class="col-md-7 d-flex flex-column mx-auto">
-                            <div class="card card-plain">
+                            <div class="card ">
                                 <div class="card-header">
                                     <h4 class="font-weight-bolder">Scan</h4>
                                     <p class="mb-0">Enter your email and password to register</p>
                                 </div>
-                                <div class="card-body">
-                                    <div style="width: 500px" id="reader"></div>
-                                </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-
-                                </div>
+                                <!-- <h1>QR Code Scanner</h1> -->
+                                <video id="video" width="320" height="240"></video>
+                                <canvas id="canvas" style="display:none;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -56,7 +53,22 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="qr.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script>
+      let scanner = new Instascan.Scanner({ video: document.getElementById('video') });
+      scanner.addListener('scan', function (content) {
+        alert('Found QR code with content: ' + content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
 
 
 
@@ -104,15 +116,15 @@
         const auth = getAuth();
         const db = getFirestore()
 
-        function onScanSuccess(decodedText, decodedResult) {
-            // Handle on success condition with the decoded text or result.
-            html5QrcodeScanner.clear();
-            console.log(`Scan result: ${decodedText}`, decodedResult);
-        }
+        // function onScanSuccess(decodedText, decodedResult) {
+        //     // Handle on success condition with the decoded text or result.
+        //     html5QrcodeScanner.clear();
+        //     console.log(`Scan result: ${decodedText}`, decodedResult);
+        // }
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess);
+        // var html5QrcodeScanner = new Html5QrcodeScanner(
+        //     "reader", { fps: 10, qrbox: 250 });
+        // html5QrcodeScanner.render(onScanSuccess);
 
     </script>
 
