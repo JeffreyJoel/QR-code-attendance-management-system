@@ -58,17 +58,7 @@
         let id = 'GARj7YZpAQz1wLHUhaWi'
         let courseID = ''
         let classID = ''
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                id = user.uid;
-                console.log(user);
-                // ...
-            } else {
-                id = 'GARj7YZpAQz1wLHUhaWi'
-                // User is signed out
-                // ...
-            }
-        })
+     
 
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
         scanner.addListener('scan', function (content) {
@@ -141,6 +131,18 @@
         const database = getDatabase();
         const auth = getAuth();
         const db = getFirestore()
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                id = user.uid;
+                console.log(user);
+                // ...
+            } else {
+                id = 'GARj7YZpAQz1wLHUhaWi'
+                // User is signed out
+                // ...
+            }
+        })
 
         const washingtonRef = doc(db, "courses", courseID, "classes", classID);
 
