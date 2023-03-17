@@ -119,8 +119,8 @@
         let classID = ''
 
         const urlParams = new URLSearchParams(location.search);
-            courseID = params.get('courseID'); // night
-            classID = params.get('classID'); // null
+            courseID = urlParams.get('courseID'); // night
+            classID = urlParams.get('classID'); // null
 
             console.log(courseID);
             console.log(classID)
