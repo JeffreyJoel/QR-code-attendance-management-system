@@ -363,7 +363,7 @@
 
 
         const generateQR = () => {
-            let qrValue = `https://qrcode-attendance.netlify.app/scanner?classId=${qrID}&courseId=${id}`;
+            let qrValue = `https://qrcode-attendance.netlify.app/verify?classId=${qrID}&courseId=${id}`;
 
             if (!qrValue || !qrID) return; // if the input is empty then return from here generateBtn.innerText = "Generating QR Code...";
             // getting a QR code of user entered value using the qrserver 
