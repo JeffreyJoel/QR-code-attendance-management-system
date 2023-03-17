@@ -152,9 +152,10 @@
         const washingtonRef = doc(db, "courses", courseID, "classes", classID);
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
         scanner.addListener('scan', async function (content) {
-            window.location.href = content;
             console.log(content);
 
+            // window.location.href = content;
+            
             const urlParams = new URLSearchParams(location.search);
             courseID = params.get('courseID'); // night
             classID = params.get('classID'); // null
