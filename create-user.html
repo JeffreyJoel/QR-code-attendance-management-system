@@ -159,7 +159,7 @@
                                     <div class="input-group input-group-outline ">
                                         <input type="number" class="form-control" id="level">
                                     </div>
-                                    </div>
+                                </div>
 
                                 <div class="form-group my-3">
                                     <label for="email">Course:</label>
@@ -169,6 +169,12 @@
                                         <option>Architecture</option>
                                         <option>Building Technology</option>
                                     </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Password</label>
+                                    <div class="input-group input-group-outline ">
+                                        <input type="text" class="form-control" id="password">
+                                    </div>
                                 </div>
 
                                 <div class="text-center">
@@ -194,7 +200,7 @@
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -209,6 +215,7 @@
         import {
             getAuth,
             signOut,
+            createUserWithEmailAndPassword
         } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
         import {
             getFirestore,
@@ -221,6 +228,7 @@
             getDocs,
             orderBy,
             query,
+            setDoc
         } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -269,33 +277,58 @@
         let matnum = document.getElementById('matnum-edit')
         let email = document.getElementById('email-edit')
         let course = document.getElementById('department-edit')
-        let level =  document.getElementById('level')
+        let level = document.getElementById('level')
         const addDocument = document.querySelector('.form')
         let department
         $("#department-edit").change(function () {
             let selectedItem = $(this).children("option:selected").text();
             // alert("You have selected the name - " + selectedItem);
             department = selectedItem
-            
+
         });
         $("#firstname-edit").change(function () {
             console.log(firstname.value);
         });
-        console.log(firstname);
-
+        console.log(firstname)
         const createUser = async () => {
-            await addDoc(collection(db, "users"), {
-                Firstname: firstname.value,
-                Lastname: lastname.value,
-                Email: email.value,
-                MatNumber: matnum.value,
-                Course: department,
-                Level: level.value
-            })
-            console.log("successful");
-            window.location = "dashboard.html";
+        
+            createUserWithEmailAndPassword(auth, `${email.value}`, `${password.value}`)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    setDoc(doc(db, "users", user.uid), {
+                        Firstname: firstname.value,
+                        Lastname: lastname.value,
+                        Email: email.value,
+                        MatNumber: matnum.value,
+                        Course: department,
+                        Level: level.value
+                    })
+                    // })
+
+
+                    swal("SUCCESS!", "User Account Created!", "success").then(
+
+                        setTimeout(() => {
+                            window.location = "dashboard.html"
+                        }, 5000)
+                    );
+                  
+                    console.log("New Course created");
+                    // window.location = "lecturer-dashboard.html";
+                })
+
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(error);
+                    // console.log(email);
+
+                    swal("ERROR!", "Wrong Username, Email or Password!", "error");
+                });
+           
         };
         $("#send-update").click(createUser)
+
 
     </script>
     <script>
