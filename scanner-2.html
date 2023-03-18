@@ -37,7 +37,7 @@
                                     <p class="mb-0">Enter your email and password to register</p>
                                 </div>
                                 <div class="card-body">
-                                    <video id="video" width="400" height="300"></video>
+                                    <video id="preview"></video>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,39 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <!-- <script>
+        let id = 'GARj7YZpAQz1wLHUhaWi'
+        let courseID = ''
+        let classID = ''
+     
+
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
+        scanner.addListener('scan', function (content) {
+            window.location.href = content;
+            console.log(content);
+        });
+        const urlParams = new URLSearchParams(location.search);
+        courseID = params.get('courseID'); // night
+        classID = params.get('classID'); // null
+
+        console.log(courseID);
+        console.log(classID)
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                let backCamera = cameras.find(function (camera) { return camera.name.indexOf('back') != -1; });
+                if (!backCamera) {
+                    backCamera = cameras[0];
+                }
+                scanner.start(backCamera);
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function (e) {
+            console.error(e);
+        });
+    </script> -->
 
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -117,27 +149,39 @@
         let courseID = ''
         let classID = ''
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('video');
+        // const washingtonRef = doc(db, "courses", courseID, "classes", classID);
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
+        scanner.addListener('scan', async function (content) {
+            console.log(content);
+            alert(content)
 
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-                .then(stream => {
-                    video.srcObject = stream;
-                    video.play();
-                });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            const button = document.getElementById('button');
+            // window.location.href = content;
+            
+            // const urlParams = new URLSearchParams(location.search);
+            // courseID = params.get('courseID'); // night
+            // classID = params.get('classID'); // null
+
+            // console.log(courseID);
+            // console.log(classID)
 
 
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height);
-            if (code) {
-                console.log('QR code detected:', code.data);
+            await updateDoc(washingtonRef, {
+                [`students.${id}.present`]: true
+            })
+        });
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                let backCamera = cameras.find(function (camera) { return camera.name.indexOf('back') != -1; });
+                if (!backCamera) {
+                    backCamera = cameras[0];
+                }
+                scanner.start(backCamera);
             } else {
-                console.log('No QR code detected.');
+                console.error('No cameras found.');
             }
+        }).catch(function (e) {
+            console.error(e);
         });
 
     </script>
