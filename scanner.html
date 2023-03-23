@@ -171,7 +171,7 @@
       const video = document.createElement("video");
       const canvasElement = document.getElementById("canvas");
       const canvas = canvasElement.getContext("2d");
-    console.log(id);
+
       // Use facingMode: environment to attempt to get the front camera on phones
       navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
         .then(stream => {
