@@ -318,7 +318,7 @@
         let qrID = ''
 
         async function getCourseData() {
-            let data = JSON.parse(localStorage.getItem('courseData'))
+            let data = JSON.parse(localStorage.getItem('courseData')) || []
             course = data
             $("#classTitle").text(`${course.Course}`)
             console.log(data);

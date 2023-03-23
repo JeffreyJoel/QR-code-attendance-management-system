@@ -158,20 +158,30 @@
         });
 
 
-        let id = 'iOHIgVVhHIPLg6TP6WIH9UFzWz12'
+        let id = ''
         let courseID = ''
         let classID = ''
 
         const urlParams = new URLSearchParams(location.search);
         courseID = urlParams.get('courseId'); // night
         classID = urlParams.get('classId'); // null
+        console.log(id);
 
         console.log(courseID);
         console.log(classID)
         const washingtonRef = doc(db, "courses", courseID, "classes", classID);
         await updateDoc(washingtonRef, {
             [`students.${id}.present`]: true
-        })
+        }).then((result) => {
+            console.log(result);
+            swal("SUCCESS!", "Verified", "success").then(
+              setTimeout(() => {
+                window.location = `login-mobile.html`;
+              }, 500)
+            );
+        }).catch((err) => {
+            
+        });
 
 
 
