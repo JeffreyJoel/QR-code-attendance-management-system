@@ -146,20 +146,20 @@
         const db = getFirestore()
 
 
-        let id 
+        let id = localStorage.getItem("userID")
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                id = user.uid;
-                console.log(user.uid);
-                console.log(id);
-                // ...
-            } else {
-                id = ''
-                // User is signed out
-                // ...
-            }
-        });
+        // onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //         // id = user.uid;
+        //         console.log(user.uid);
+        //         console.log(id);
+        //         // ...
+        //     } else {
+        //         id = ''
+        //         // User is signed out
+        //         // ...
+        //     }
+        // });
 
 
         let courseID = ''
@@ -177,11 +177,11 @@
             [`students.${id}.present`]: true
         }).then((result) => {
             console.log(result);
-            swal("SUCCESS!", "Verified", "success").then(
-              setTimeout(() => {
-                window.location = `login-mobile.html`;
-              }, 500)
-            );
+            // swal("SUCCESS!", "Verified", "success").then(
+            //   setTimeout(() => {
+            //     window.location = `login-mobile.html`;
+            //   }, 500)
+            // );
         }).catch((err) => {
             
         });

@@ -139,6 +139,7 @@
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          localStorage.setItem("userID", user.uid)
           validateUser(user.uid)
 
         }
