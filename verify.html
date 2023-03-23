@@ -146,12 +146,12 @@
         const db = getFirestore()
 
 
-        const id = 
+        let id 
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 id = user.uid;
-                console.log(user);
+                console.log(user.uid);
                 console.log(id);
                 // ...
             } else {
