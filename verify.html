@@ -177,11 +177,11 @@
             [`students.${id}.present`]: true
         }).then((result) => {
             console.log(result);
-            // swal("SUCCESS!", "Verified", "success").then(
-            //   setTimeout(() => {
-            //     window.location = `login-mobile.html`;
-            //   }, 500)
-            // );
+            swal("SUCCESS!", "Verified", "success").then(
+              setTimeout(() => {
+                window.location = `login-mobile.html`;
+              }, 4000)
+            );
         }).catch((err) => {
             
         });
