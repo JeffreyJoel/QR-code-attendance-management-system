@@ -134,7 +134,7 @@
       let password = document.getElementById("password").value;
       console.log(email)
   try {
-    await signInWithEmailAndPassword(auth, `${email}@gmail.com`, password).then(
+    await signInWithEmailAndPassword(auth, email, password).then(
         (userCredential) => {
           // Signed in
           const user = userCredential.user;
