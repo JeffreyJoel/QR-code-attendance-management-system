@@ -55,53 +55,25 @@
                         <span class="nav-link-text ms-1">Generate QR code</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li> -->
-
-
-
+          
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
                     </h6>
                 </li>
+               
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="pages/profile.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">person</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Profile</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="pages/sign-in.html">
+                    <a class="nav-link text-white " href="index.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">login</i>
                         </div>
                         <span class="nav-link-text ms-1">Sign Out</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-          <a class="nav-link text-white " href="pages/sign-up.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">assignment</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
-          </a>
-        </li> -->
+  
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-            <!-- <div class="mx-3">
-        <a class="btn bg-gradient-primary mt-4 w-100"
-          href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to
-          pro</a>
-      </div> -->
+    
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -149,14 +121,13 @@
                                 <i class="material-icons opacity-10">person</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                                <h4 class="mb-0">2,300</h4>
+                                <p class="text-sm mb-0 text-capitalize">Students</p>
+                                <h4 class="mb-0" id="studentAmt"></h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last
-                                month</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -165,17 +136,16 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                                <i class="material-icons opacity-10">school</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                                <h4 class="mb-0">3,462</h4>
+                                <p class="text-sm mb-0 text-capitalize">Classes</p>
+                                <h4 class="mb-0" id="classAmt"></h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than
-                                yesterday</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -220,18 +190,9 @@
                             <!-- <div class="card-body"> -->
                             <div class="input-group input-group-outline row">
                                 <input type="text " id="searchbar" class="form-control col-12 col-md-6"
-                                    placeholder="Search ">
+                                    placeholder="Search by name or Mat number ">
                                 <div class="input-group-append col-12 col-md-6 d-flex justify-content-between">
-                                    <select class="form-select w-50 col-3" id="CategorySelected">
-                                        <option selected>By Name</option>
-                                        <option value="1">By Matric number</option>
-                                        <!-- <option value="2">By Email</option>
-                                        <option value="3">By Course</option> -->
-                                    </select>
-                                    <button id="searchbutton" class="  btn btn-outline-primary mb-0" id="searchBtn"
-                                        type="button">
-                                        Search
-                                    </button>
+                                 
                                 </div>
 
                             </div>
@@ -354,7 +315,7 @@
         //   signOut(auth)
         //     .then(() => {
         //       //console.log('Admin logged out!!');
-        //       window.location = "login.html";
+        //       window.location = " index.html";
 
         //       localStorage.clear();
         //       // Sign-out successful.
@@ -384,6 +345,7 @@
 
                 }
                 console.log(admin);
+                $("#studentAmt").text(admin.length)
             });
 
             admin.forEach((data, index) => {
@@ -424,8 +386,9 @@
 
                 }
                 // console.log(classes);
+                
             });
-
+            $("#classAmt").text(classes.length)
             // $('#btnAddCol').click(
             let iter = 0;
             // function appendColumn() {
@@ -495,54 +458,18 @@
         var searchBtn = document.getElementById("searchBtn");
         // var textInput = document.getElementById("titleInput").value
 
-        function SearchTable(Category) {
-            var filter = searchbar.value.toLowerCase();
-            var tr = tbody.getElementsByTagName("tr");
-            var found;
+      
+        function SearchTable() {
+                var value = $(this).val().toLowerCase();
+                $("#table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                })
 
-            for (let i = 0; i < tr.length; i++) {
-                var td = tr[i].getElementsByClassName(Category);
-
-                for (let j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;
-                } else {
-                    tr[i].style.display = "none";
-                    found = false;
-                }
             }
-        }
-        function searchImplement() {
-            if (searchbar.value.length > 0) {
-                SearchTable("namefield");
-            }
-            if (searchbar.value.length > 0 && category.value == 1) {
-                SearchTable("Matnofield");
-            }
-            if (searchbar.value.length > 0 && category.value == 2) {
-                SearchTable("Emailfield");
-            }
-            if (searchbar.value.length > 0 && category.value == 3) {
-                SearchTable("coursefield");
-            }
-            if (searchbar.value === "") {
-                getAllDataAtOnce();
-            }
-        }
 
 
-
-
-
-        // $(`#times${index}`).on("click", console.log($("#titleInput").value))
-
-        $("#searchbutton").on("click", searchImplement);
-        $("#searchbar").on("keyup", searchImplement);
+        $("#searchbutton").on("click", SearchTable);
+        $("#searchbar").on("keyup", SearchTable);
 
     </script>
     <script>
