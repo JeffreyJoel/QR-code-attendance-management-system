@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png"> -->
+
     <link rel="stylesheet" href="style.css">
     <title>
         QR Code
@@ -61,9 +60,9 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
                     </h6>
                 </li>
-               
+
                 <li class="nav-item">
-                    <a class="nav-link text-white " href=" index.html">
+                    <a class="nav-link text-white " href="course-auth.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">login</i>
                         </div>
@@ -119,10 +118,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-7">
                                     <h6>Create Class</h6>
-                                    <!-- <p class="text-sm mb-0">
-                    <i class="fa fa-check text-info" aria-hidden="true"></i>
-                    <-- <span class="font-weight-bold ms-1">30 done</span> this month -
-                  </p> -->
+                
                                 </div>
                                 <div class="col-lg-6 col-5 my-auto text-end">
                                     <div class="dropdown float-lg-end pe-4">
@@ -130,15 +126,7 @@
                                             aria-expanded="false">
                                             <i class="fa fa-ellipsis-v text-secondary"></i>
                                         </a>
-                                        <!-- <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" id="dropdown"
-                                            aria-labelledby="dropdownTable">
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Create
-                                                    User</a></li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Create
-                                                    Student</a></li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Something
-                                                    else here</a></li>
-                                        </ul> -->
+                                  
                                     </div>
                                 </div>
                             </div>
@@ -150,16 +138,17 @@
                                 <h4 id="classTitle"></h4>
                                 <div class="">
                                     <div class="wrapper">
-
                                         <div class="form">
-                                            <div class="form-group mb-3">
-                                                <!-- <label class="form-label">Email</label> -->
-                                                <div class="input-group input-group-outline">
-                                                    <input type="text" class="form-control w-50" id="week"
-                                                        placeholder="Enter week" />
-                                                </div>
+                                            <div class="d-flex">
+                                                <select id="timerType" class="form-select px-2">
+                                                    <option value="seconds">Seconds</option>
+                                                    <option value="minutes">Minutes</option>
+                                                </select>
+                                                <input id="timerInput" type="number" class="form-control ms-2"
+                                                    placeholder="Enter timer value"><br>
+
                                             </div>
-                                            <button id="searchbutton" class="  btn btn-outline-primary mb-5"
+                                            <button id="searchbutton" class="btn btn-outline-primary mb-5 btn-block"
                                                 id="searchBtn" type="button">
                                                 Generate Code
                                             </button>
@@ -209,22 +198,6 @@
             qrImg = wrapper.querySelector(".qr-code img"),
             randomLink = wrapper.querySelector(".random-link");
 
-
-
-        // qrInput.addEventListener("keyup", () => {
-        //     if (!qrInput.value) {
-        //         wrapper.classList.remove("active");
-        //     }
-        // });
-
-        // function create_random_string(string_length) {
-        //     var random_string = '';
-        //     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'
-        //     for (var i, i = 0; i < string_length; i++) {
-        //         random_string += characters.charAt(Math.floor(Math.random() * characters.length))
-        //     }
-        //     return `https://example.com/${qrID}`;
-        // }
     </script>
 
 

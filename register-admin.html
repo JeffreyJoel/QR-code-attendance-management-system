@@ -154,6 +154,7 @@ signUp.addEventListener("click", (e) => {
        createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user; 
+          localStorage.setItem("UID", user.uid)
           setDoc(doc(db, "admins", user.uid), {
             Firstname: firstname,
             Lastname: lastname,

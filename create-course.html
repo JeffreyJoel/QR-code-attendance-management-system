@@ -71,7 +71,7 @@
                 </li>
                
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="  index.html">
+                    <a class="nav-link text-white " href="admin-auth.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">login</i>
                         </div>
@@ -170,7 +170,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="button" id="signUp"
+                                        <button type="button" id="create"
                                             class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Create</button>
                                     </div>
                                 </form>
@@ -243,9 +243,7 @@
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                                             scope="col">Password
                                         </th>
-                                        <!-- <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Action
-                                        </th> -->
+                                    
                                     </tr>
                                 </thead>
                                 <tbody id="tbody1"></tbody>
@@ -359,7 +357,6 @@
                 $("#table tbody tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 })
-
             }
 
 
@@ -369,8 +366,8 @@
 
         window.onload = getCourses;
 
-        var signUp = document.getElementById('signUp')
-        signUp.addEventListener("click", (e) => {
+        var create = document.getElementById('create')
+        create.addEventListener("click", (e) => {
             e.preventDefault();
 
             // let username = document.getElementById('username').value;
@@ -390,7 +387,7 @@
                         password: password
                     });
 
-                    swal("SUCCESS!", "User Account Created!", "success").then(
+                    swal("SUCCESS!", "User Course Created!", "success").then(
 
                         setTimeout(() => {
                             window.location = "dashboard.html"
@@ -406,7 +403,7 @@
                     console.log(error);
                     // console.log(email);
 
-                    swal("ERROR!", "Wrong Username, Email or Password!", "error");
+                    swal("ERROR!", "Wrong Course or Password!", "error");
                 });
 
 

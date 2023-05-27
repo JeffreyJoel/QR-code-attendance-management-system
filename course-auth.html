@@ -21,22 +21,22 @@
   <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="bg-gray-200">
   <main class="main-content mt-0">
     <section>
       <div class="page-header min-vh-100">
         <div class="container">
           <div class="row">
             <div class="col-md-7 d-flex flex-column mx-auto">
-              <div class="card card-plain">
+              <div class="card">
                 <div class="card-header">
                   <h4 class="font-weight-bolder">Log in</h4>
-                  <p class="mb-0">Enter your email and password to Log in</p>
+                  <p class="mb-0">Enter course and password to Log in</p>
                 </div>
                 <div class="card-body">
                   <form role="form">
                     <div class="form-group mb-3">
-                      <label class="form-label">Username <i class="material-icons opacity-10" style="font-size: 15px;"
+                      <label class="form-label">Course <i class="material-icons opacity-10" style="font-size: 15px;"
                           data-toggle="tooltip" data-placement="top"
                           title="your username are the characters before the @sign in your email">info</i></label>
                       <div class="input-group input-group-outline">
@@ -65,7 +65,7 @@
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-2 text-sm mx-auto">
                     Don't have an account?
-                    <a href="register-admin.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                    <!-- <a href="register-admin.html" class="text-primary text-gradient font-weight-bold"></a> -->
                   </p>
                 </div>
               </div>
@@ -140,67 +140,55 @@
       let email = document.getElementById("email").value.toLowerCase();
       let password = document.getElementById("password").value;
       console.log(email)
-  try {
-    await signInWithEmailAndPassword(auth, `${email}@gmail.com`, password).then(
-        (userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          validateUser(user.uid)
+      try {
+        await signInWithEmailAndPassword(auth, `${email}@gmail.com`, password).then(
+          (userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user);
+            localStorage.setItem("UID", user.uid)
+            validateUser(user.uid)
 
-        }
+          }
 
-      );
-  } catch (error) {
-    swal("ERROR!", "User not found", "error");
-  }
+        );
+      } catch (error) {
+        swal("ERROR!", "User not found", "error");
+      }
 
     });
 
     async function validateUser(id) {
 
       try {
-        const docRef = doc(db, "admins", id);
-        const snapshot = await getDoc(docRef);
+
         let data = {}
-        if (snapshot.exists()) {
-          console.log("Document data:", snapshot.data());
+
+        const ndocRef = doc(db, "course", id);
+        const nsnapshot = await getDoc(ndocRef);
+
+        if (nsnapshot.exists()) {
+          console.log("Document data:", nsnapshot.data());
           data = snapshot.data();
           console.log(data);
-          if (data.isSuperAdmin === true) {
-            swal("SUCCESS!", "LoggedIn", "success").then(
-              setTimeout(() => {
-                window.location = `dashboard.html?id=${id}`;
-              }, 500)
-            );
-          }
           // ...
-        }
-        else {
-          const ndocRef = doc(db, "course", id);
-          const nsnapshot = await getDoc(ndocRef);
+          swal("Logged in!!", "Please hold on, you will be redirected shortly", "success").then(
 
-          // if (nsnapshot.exists()) {
-          console.log("Document data:", nsnapshot.data());
-          data = nsnapshot.data();
-          console.log(data);
-          swal("SUCCESS!", "LoggedIn", "success").then(
             setTimeout(() => {
               window.location = `lecturer-dashboard.html?id=${id}`;
-            }, 500)
+            }, 5000)
           );
-          // }
-          // else {
-          //   swal("ERROR!", "User not found", "error");
-          // }
+        }
+        else {
+          console.log(err);
+          swal(`${err.message}`, "User not found", "error")
         }
 
-        // else {
-        //   swal("ERROR!", "User not found", "error");
-        // }
+
+
       } catch (err) {
         console.log(err);
-        swal("ERROR!", "User not found", "error");
+        swal(`${err.message || err}`, "User not found", "error");
       }
     }
       // });
