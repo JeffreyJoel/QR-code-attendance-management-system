@@ -405,6 +405,7 @@
       });
 
       $('#studentAmt').text(admin.length)
+      localStorage.setItem('students', admin.length)
 
       addAllItemsToTable(admin);
 

@@ -55,12 +55,12 @@
                         <span class="nav-link-text ms-1">Generate QR code</span>
                     </a>
                 </li>
-          
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
                     </h6>
                 </li>
-               
+
                 <li class="nav-item">
                     <a class="nav-link text-white " href="course-auth.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -69,11 +69,11 @@
                         <span class="nav-link-text ms-1">Sign Out</span>
                     </a>
                 </li>
-  
+
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-    
+
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -127,7 +127,7 @@
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                                 <input type="text " id="searchbar" class="form-control col-12 col-md-6"
                                     placeholder="Search by name or Mat number ">
                                 <div class="input-group-append col-12 col-md-6 d-flex justify-content-between">
-                                 
+
                                 </div>
 
                             </div>
@@ -338,15 +338,22 @@
             // let userRef = this.database.ref('admin' + userId);
             let admin = [];
 
+
             querySnapshot.forEach((doc) => {
                 admin.push({ id: doc.id, ...doc.data() });
                 if (admin.length < 1) {
                     console.log("empty");
+                    $("#studentAmt").text(0)
 
                 }
                 console.log(admin);
                 $("#studentAmt").text(admin.length)
+
             });
+
+            if (admin.length === 0) {
+                $("#studentAmt").text(0)
+            }
 
             admin.forEach((data, index) => {
 
@@ -386,7 +393,7 @@
 
                 }
                 // console.log(classes);
-                
+
             });
             $("#classAmt").text(classes.length)
             // $('#btnAddCol').click(
@@ -458,14 +465,14 @@
         var searchBtn = document.getElementById("searchBtn");
         // var textInput = document.getElementById("titleInput").value
 
-      
-        function SearchTable() {
-                var value = $(this).val().toLowerCase();
-                $("#table tbody tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                })
 
-            }
+        function SearchTable() {
+            var value = $(this).val().toLowerCase();
+            $("#table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+
+        }
 
 
         $("#searchbutton").on("click", SearchTable);
