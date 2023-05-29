@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -240,6 +241,7 @@
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script type="module">
@@ -423,13 +425,14 @@
                 header.find('tr').each(function () {
                     var trow = $(this);
                     if (trow.index() === 0) {
-                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter + 1}</th>`);
+                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter + 1} <a class="text-danger mr-2 href="#" ><i class="material-icons" style="font-size: 15px; cursor: pointer;" id=${data.id}>close</i><a/></th>`);
                     }
                     else {
                         trow.append('<td>absent</td>');
                     }
 
                 });
+                $(`#${data.id}`).click(deleteItem);
 
                 table.find('tr').each(function (num, data) {
                     var trow = $(this);
@@ -443,15 +446,7 @@
                         // console.log(students[index].sID.present);
                         trow.append('<td>present</td>');
                     }
-                    // table.find('tr').each(function () {
-                    //     var trow = $(this);
-                    // console.log(students);
-                    //    students.forEach((student)=>{
-                    //     console.log(student);
-
-                    //    })
-
-
+  
 
                 });
                 iter += 1;
@@ -474,6 +469,45 @@
 
         }
 
+
+        const deleteClass = async (classID) => {
+            Swal.fire({
+                html:
+                    `<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>`,
+                heightAuto: false,
+                showConfirmButton: false,
+                background: 'transparent',
+
+            })
+            await deleteDoc(doc(db, "courses", id, 'classes', classID))
+            console.log("deleted")
+            location.reload()
+        }
+        const deleteItem = async (e) => {
+            let classID = e.target.id;
+
+
+
+
+            Swal.fire({
+                title: 'Delete class?',
+                html: `The attendance of this class will be deleted`,
+                icon: 'warning',
+                showDenyButton: true,
+                confirmButtonText: 'No',
+                denyButtonText: `Delete`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+
+                } else if (result.isDenied) {
+                    deleteClass(classID)
+
+                }
+            })
+        };
 
         $("#searchbutton").on("click", SearchTable);
         $("#searchbar").on("keyup", SearchTable);

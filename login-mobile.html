@@ -133,21 +133,21 @@
       let email = document.getElementById("email").value.toLowerCase();
       let password = document.getElementById("password").value;
       console.log(email)
-  try {
-    await signInWithEmailAndPassword(auth, email, password).then(
-        (userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          localStorage.setItem("userID", user.uid)
-          validateUser(user.uid)
+      try {
+        await signInWithEmailAndPassword(auth, email, password).then(
+          (userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user);
+            localStorage.setItem("userID", user.uid)
+            validateUser(user.uid)
 
-        }
+          }
 
-      );
-  } catch (error) {
-    swal("ERROR!", "User not found", "error");
-  }
+        );
+      } catch (error) {
+        swal("ERROR!", `${error.message}`, "error");
+      }
 
     });
 
@@ -162,15 +162,15 @@
           data = snapshot.data();
           console.log(data);
           swal("SUCCESS!", "LoggedIn", "success").then(
-              setTimeout(() => {
-                window.location = `scanner.html?id=${id}`;
-              }, 500)
-            );
+            setTimeout(() => {
+              window.location = `scanner.html?id=${id}`;
+            }, 500)
+          );
         }
-     
+
       } catch (err) {
         console.log(err);
-        swal("ERROR!", "User not found", "error");
+        swal("ERROR!", `${err.message}`, "error");
       }
     }
       // });
