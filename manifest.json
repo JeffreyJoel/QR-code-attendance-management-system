@@ -1,7 +1,7 @@
 {
     "name": "Attendance App",
     "short_name": "Attendance",
-    "start_url": "login-mobile.html",
+    "start_url": "https://qrcode-attendance.netlify.app/login-mobile.html",
     "display": "standalone",
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
