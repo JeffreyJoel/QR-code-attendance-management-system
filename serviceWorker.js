@@ -1,9 +1,9 @@
 const attendanceApp = "attendance-app-v1"
 const assets = [
   "/",
-  "/login-mobile.html",
-  "/style.css",
-  "/app.js",
+  "login-mobile.html",
+  "style.css",
+  "app.js",
 ]
 
 self.addEventListener("install", installEvent => {
