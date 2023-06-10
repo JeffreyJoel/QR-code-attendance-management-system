@@ -1,236 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!-- <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png"> -->
-    <title>
-        Lecturer Dashboard
-    </title>
+    <title>Lecturer Dashboard</title>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
     <!-- Nucleo Icons -->
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
     <!-- CSS Files -->
-    <link id="pagestyle" href="assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link
+      id="pagestyle"
+      href="assets/css/material-dashboard.css?v=3.0.4"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="g-sidenav-show  bg-gray-200">
+  <body class="g-sidenav-show bg-gray-200">
     <aside
-        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
-        id="sidenav-main">
-        <div class="sidenav-header">
-            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-                aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-                target="_blank">
-                <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold text-white">Lecturer Dashboard</span>
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+      id="sidenav-main"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+        <a
+          class="navbar-brand m-0"
+          href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
+          target="_blank"
+        >
+          <img
+            src="assets/img/logo-ct.png"
+            class="navbar-brand-img h-100"
+            alt="main_logo"
+          />
+          <span class="ms-1 font-weight-bold text-white"
+            >Lecturer Dashboard</span
+          >
+        </a>
+      </div>
+      <hr class="horizontal light mt-0 mb-2" />
+      <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white active bg-gradient-primary" href="#">
+              <div
+                class="text-white text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">dashboard</i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
             </a>
-        </div>
-        <hr class="horizontal light mt-0 mb-2">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="#">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="qr-code.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">view_in_ar</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Generate QR code</span>
-                    </a>
-                </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="qr-code.html">
+              <div
+                class="text-white text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">view_in_ar</i>
+              </div>
+              <span class="nav-link-text ms-1">Generate QR code</span>
+            </a>
+          </li>
 
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages
-                    </h6>
-                </li>
+          <li class="nav-item mt-3">
+            <h6
+              class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8"
+            >
+              Account pages
+            </h6>
+          </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="course-auth.html">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">login</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Sign Out</span>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-        <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-
-        </div>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="course-auth.html">
+              <div
+                class="text-white text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">login</i>
+              </div>
+              <span class="nav-link-text ms-1">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidenav-footer position-absolute w-100 bottom-0"></div>
     </aside>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-        <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
-            data-scroll="true">
-            <!--  -->
-            <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
-                        </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-                    </ol>
-                    <h6 class="font-weight-bolder mb-0">Dashboard</h6>
-                </nav>
-                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    >
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+        id="navbarBlur"
+        data-scroll="true"
+      >
+        <!--  -->
+        <div class="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <ol
+              class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5"
+            >
+              <li class="breadcrumb-item text-sm">
+                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+              </li>
+              <li
+                class="breadcrumb-item text-sm text-dark active"
+                aria-current="page"
+              >
+                Dashboard
+              </li>
+            </ol>
+            <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+          </nav>
+          <div
+            class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+            id="navbar"
+          ></div>
+          <ul class="navbar-nav justify-content-end">
+            <!-- Important -->
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a
+                href="javascript:;"
+                class="nav-link text-body p-0"
+                id="iconNavbarSidenav"
+              >
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
                 </div>
-                <ul class="navbar-nav  justify-content-end">
-
-                    <!-- Important -->
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            </div>
-        </nav>
-        <!-- End Navbar -->
-        <div class="container-fluid py-4" id="main-admin">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-6 mb-xl-0 mb-4 mx-auto">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
-                            </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Students</p>
-                                <h4 class="mb-0" id="studentAmt"></h4>
-                            </div>
-                        </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-
-                        </div>
-                    </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="container-fluid py-4" id="main-admin">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 mb-xl-0 mb-4 mx-auto">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
+                >
+                  <i class="material-icons opacity-10">person</i>
                 </div>
-                <div class="col-md-4 col-sm-6 mb-xl-0 mb-4 mx-auto">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">school</i>
-                            </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Classes</p>
-                                <h4 class="mb-0" id="classAmt"></h4>
-                            </div>
-                        </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-
-                        </div>
-                    </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">Students</p>
+                  <h4 class="mb-0" id="studentAmt"></h4>
                 </div>
-
+              </div>
+              <hr class="dark horizontal my-0" />
+              <div class="card-footer p-3"></div>
             </div>
+          </div>
+          <div class="col-md-4 col-sm-6 mb-xl-0 mb-4 mx-auto">
+            <div class="card">
+              <div class="card-header p-3 pt-2">
+                <div
+                  class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute"
+                >
+                  <i class="material-icons opacity-10">school</i>
+                </div>
+                <div class="text-end pt-1">
+                  <p class="text-sm mb-0 text-capitalize">Classes</p>
+                  <h4 class="mb-0" id="classAmt"></h4>
+                </div>
+              </div>
+              <hr class="dark horizontal my-0" />
+              <div class="card-footer p-3"></div>
+            </div>
+          </div>
+        </div>
 
-            <div class="row mb-4 mt-4">
-                <div class="col-md-10  mx-auto mb-4">
-                    <div class="card">
-
-                        <div class="card-header pb-0">
-
-                            <div class="row">
-                                <div class="col-lg-6 col-7">
-                                    <h6 id="tableTitle"></h6>
-                                    <!-- <p class="text-sm mb-0">
+        <div class="row mb-4 mt-4">
+          <div class="col-md-10 mx-auto mb-4">
+            <div class="card">
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-lg-6 col-7">
+                    <h6 id="tableTitle"></h6>
+                    <!-- <p class="text-sm mb-0">
                     <i class="fa fa-check text-info" aria-hidden="true"></i>
                     <-- <span class="font-weight-bold ms-1">30 done</span> this month -
                   </p> -->
-                                </div>
-                                <div class="col-lg-6 col-5 my-auto text-end">
-                                    <div class="dropdown float-lg-end pe-4">
-                                        <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-secondary"></i>
-                                        </a>
-                                        <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" id="dropdown"
-                                            aria-labelledby="dropdownTable">
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;"
-                                                    id="printTable">Print
-                                                    Table</a></li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;"
-                                                    id="printExcel">Download Excel File
-                                                </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-lg-6 col-5 my-auto text-end">
+                    <div class="dropdown float-lg-end pe-4">
+                      <a
+                        class="cursor-pointer"
+                        id="dropdownTable"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class="fa fa-ellipsis-v text-secondary"></i>
+                      </a>
+                      <ul
+                        class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5"
+                        id="dropdown"
+                        aria-labelledby="dropdownTable"
+                      >
+                        <li>
+                          <a
+                            class="dropdown-item border-radius-md"
+                            href="javascript:;"
+                            id="printTable"
+                            >Print Table</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item border-radius-md"
+                            href="javascript:;"
+                            id="printExcel"
+                            >Download Excel File
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item border-radius-md"
+                            href="javascript:;"
+                            id="copyTable"
+                            >Copy Table
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                        <div class="card-body">
-                            <!-- <div class="card-body"> -->
-                            <div class="input-group input-group-outline row">
-                                <input type="text " id="searchbar" class="form-control col-12 col-md-6"
-                                    placeholder="Search by name or Mat number ">
-                                <div class="input-group-append col-12 col-md-6 d-flex justify-content-between">
+              <div class="card-body">
+                <!-- <div class="card-body"> -->
+                <div class="input-group input-group-outline row">
+                  <input
+                    type="text "
+                    id="searchbar"
+                    class="form-control col-12 col-md-6"
+                    placeholder="Search by name or Mat number "
+                  />
+                  <div
+                    class="input-group-append col-12 col-md-6 d-flex justify-content-between"
+                  ></div>
+                </div>
+              </div>
 
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0" id="table">
-                                <thead id="header">
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">#</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Name</th>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
-                                            scope="col">Matno
-                                        </th>
-                                        <!-- <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="table">
+                  <thead id="header">
+                    <tr>
+                      <th
+                        class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+                        scope="col"
+                      >
+                        #
+                      </th>
+                      <th
+                        class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+                        scope="col"
+                      >
+                        Name
+                      </th>
+                      <th
+                        class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+                        scope="col"
+                      >
+                        Matno
+                      </th>
+                      <!-- <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                                             scope="col">Action
                                         </th> -->
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody1"></tbody>
-                            </table>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody1"></tbody>
+                </table>
+              </div>
             </div>
-
-            <footer class="footer py-4  ">
-                <div class="container-fluid">
-
-                </div>
-            </footer>
+          </div>
         </div>
+
+        <footer class="footer py-4">
+          <div class="container-fluid"></div>
+        </footer>
+      </div>
     </main>
 
     <!--   Core JS Files   -->
@@ -241,331 +317,322 @@
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
-        import {
-            getDatabase,
-            set,
-            ref,
-            update,
-        } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
-        import {
-            getAuth,
-            signOut,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
-        import {
-            getFirestore,
-            doc,
-            getDoc,
-            updateDoc,
-            deleteDoc,
-            onSnapshot,
-            collection,
-            getDocs,
-            orderBy,
-            query,
-        } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+      import {
+        getAuth,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+        updateDoc,
+        deleteDoc,
+        onSnapshot,
+        collection,
+        getDocs,
+        orderBy,
+        query,
+      } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
-            authDomain: "covenant-attendance-system.firebaseapp.com",
-            databaseURL:
-                "https://covenant-attendance-system-default-rtdb.firebaseio.com",
-            projectId: "covenant-attendance-system",
-            storageBucket: "covenant-attendance-system.appspot.com",
-            messagingSenderId: "548597580643",
-            appId: "1:548597580643:web:73d70a20991234cc338956",
-            measurementId: "G-MDZF12Q9XB",
-        };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAIRMyABHPDd6D5AEDYA7URkmCp1oWl23U",
+        authDomain: "covenant-attendance-system.firebaseapp.com",
+        databaseURL:
+          "https://covenant-attendance-system-default-rtdb.firebaseio.com",
+        projectId: "covenant-attendance-system",
+        storageBucket: "covenant-attendance-system.appspot.com",
+        messagingSenderId: "548597580643",
+        appId: "1:548597580643:web:73d70a20991234cc338956",
+        measurementId: "G-MDZF12Q9XB",
+      };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        const db = getFirestore(app);
-        const auth = getAuth();
-        let id = ''
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const db = getFirestore(app);
+      const auth = getAuth();
+      let id = "";
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                id = user.uid;
-                console.log(id);
-                // ...
-            } else {
-                // User is signed out
-                // ...
-            }
-        })
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          id = user.uid;
+          console.log(id);
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      });
 
+      // let logout = document.getElementById("logout");
 
+      // logout.addEventListener("click", (e) => {
+      //   e.preventDefault();
 
-        // let logout = document.getElementById("logout");
+      //   signOut(auth)
+      //     .then(() => {
+      //       //console.log('Admin logged out!!');
+      //       window.location = " index.html";
 
-        // logout.addEventListener("click", (e) => {
-        //   e.preventDefault();
+      //       localStorage.clear();
+      //       // Sign-out successful.
+      //     })
+      //     .catch((error) => {
+      //       // An error happened.
+      //     });
+      // });
 
-        //   signOut(auth)
-        //     .then(() => {
-        //       //console.log('Admin logged out!!');
-        //       window.location = " index.html";
+      let stdNo = 0;
+      let tbody1 = document.getElementById("tbody1");
 
-        //       localStorage.clear();
-        //       // Sign-out successful.
-        //     })
-        //     .catch((error) => {
-        //       // An error happened.
-        //     });
-        // });
+      async function getAllDataAtOnce() {
+        const q = query(collection(db, "users"));
+        const querySnapshot = await getDocs(q);
+        // let userRef = this.database.ref('admin' + userId);
+        let admin = [];
+        querySnapshot.forEach((doc) => {
+          admin.push({ id: doc.id, ...doc.data() });
+          if (admin.length < 1) {
+            console.log("empty");
+            $("#studentAmt").text(0);
+          }
+          console.log(admin);
+          $("#studentAmt").text(admin.length);
+        });
 
-        let stdNo = 0;
-        let tbody1 = document.getElementById("tbody1");
+        if (admin.length === 0) {
+          $("#studentAmt").text(0);
+        }
 
-
-        async function getAllDataAtOnce() {
-            const q = query(collection(db, "users"));
-            const querySnapshot = await getDocs(q);
-            // let userRef = this.database.ref('admin' + userId);
-            let admin = [];
-            querySnapshot.forEach((doc) => {
-                admin.push({ id: doc.id, ...doc.data() });
-                if (admin.length < 1) {
-                    console.log("empty");
-                    $("#studentAmt").text(0)
-
-                }
-                console.log(admin);
-                $("#studentAmt").text(admin.length)
-
-            });
-
-            if (admin.length === 0) {
-                $("#studentAmt").text(0)
-            }
-
-            admin.forEach((data, index) => {
-
-                tbody1.innerHTML += `<tr id=${data.id}>
+        admin.forEach((data, index) => {
+          tbody1.innerHTML += `<tr id=${data.id}>
                 <td>${index + 1}</td>
-                <td>${data.Firstname + ' ' + data.Lastname}</td>
+                <td>${data.Firstname + " " + data.Lastname}</td>
                 <td>${data.MatNumber}</td>
      
             </tr>`;
-
-            });
-
-            const docRef = doc(db, "courses", id);
-            const snapshot = await getDoc(docRef);
-            if (snapshot.exists()) {
-                console.log(snapshot.data());
-                let data = {}
-                data = snapshot.data()
-                $("#tableTitle").text(`${data.Course}`)
-                localStorage.setItem("courseData", JSON.stringify(data))
-            }
-            getClasses()
-
-        }
-
-        async function getClasses() {
-
-            const q = query(collection(db, "courses", id, "classes"));
-            const querySnapshot = await getDocs(q);
-            // let userRef = this.database.ref('admin' + userId);
-            let classes = [];
-            let students = [];
-            querySnapshot.forEach((doc) => {
-                classes.push({ id: doc.id, ...doc.data() });
-                if (classes.length < 1) {
-                    console.log("empty");
-
-                }
-                // console.log(classes);
-
-            });
-            $("#classAmt").text(classes.length)
-            localStorage.setItem("numberOfClasses", classes.length)
-            // $('#btnAddCol').click(
-            let iter = 0;
-            // function appendColumn() {
-            //     tbody1.find('tr').each(function () {
-            //         var trow = $(this);
-            //         if (trow.index() === 0) {
-            //             trow.append('<td>Col' + iter + '</td>');
-            //         } else {
-            //             trow.append('<td><input type="checkbox" name="cb' + iter + '"/></td>');
-            //         }
-
-            //     });
-            //     iter += 1;
-            // };
-            var table = $('#tbody1')
-            var header = $('#header')
-            let studentList = []
-
-            classes.forEach((data, index) => {
-                students.push(data.students)
-                students.forEach((data, index) => {
-                    studentList.push(data[index])
-                })
-                // console.log(studentList);
-                header.find('tr').each(function () {
-                    var trow = $(this);
-                    if (trow.index() === 0) {
-                        trow.append(`<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${iter + 1} <a class="text-danger mr-2 href="#" ><i class="material-icons" style="font-size: 15px; cursor: pointer;" id=${data.id}>close</i><a/></th>`);
-                    }
-                    else {
-                        trow.append('<td>absent</td>');
-                    }
-
-                });
-                $(`#${data.id}`).click(deleteItem);
-
-                table.find('tr').each(function (num, data) {
-                    var trow = $(this);
-                    let sID = data.id
-                    // console.log(students[index][sID].present)
-                    // console.log(students);
-                    if (students[index][sID].present === false) {
-                        trow.append('<td>absent</td>');
-                    }
-                    else {
-                        // console.log(students[index].sID.present);
-                        trow.append('<td>present</td>');
-                    }
-
-
-                });
-                iter += 1;
-            })
-
-        }
-
-
-
-        window.onload = getAllDataAtOnce;
-
-        var searchbar = document.getElementById("searchbar");
-        var category = document.getElementById("CategorySelected");
-        var searchBtn = document.getElementById("searchBtn");
-        // var textInput = document.getElementById("titleInput").value
-
-
-        function SearchTable() {
-            var value = $(this).val().toLowerCase();
-            $("#table tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            })
-
-        }
-
-
-        const deleteClass = async (classID) => {
-            Swal.fire({
-                html:
-                    `<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                        <span class="sr-only">Loading...</span>
-                    </div>`,
-                heightAuto: false,
-                showConfirmButton: false,
-                background: 'transparent',
-
-            })
-            await deleteDoc(doc(db, "courses", id, 'classes', classID))
-            console.log("deleted")
-            location.reload()
-        }
-        const deleteItem = async (e) => {
-            let classID = e.target.id;
-
-
-
-
-            Swal.fire({
-                title: 'Delete class?',
-                html: `The attendance of this class will be deleted`,
-                icon: 'warning',
-                showDenyButton: true,
-                confirmButtonText: 'No',
-                denyButtonText: `Delete`,
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-
-                } else if (result.isDenied) {
-                    deleteClass(classID)
-
-                }
-            })
-        };
-
-
-        $("#printTable").on("click", () => {
-            let table = document.getElementById('table');
-            var clonedTable = table.cloneNode(true);
-            var printWindow = window.open("", "_blank");
-            var printDocument = "<html><head><title>Print Document</title>";
-            printDocument += "<style>table, th, td { border: 1px solid black; border-collapse: collapse; padding: 4px;  } .material-icons{display: none;}</style>";
-            printDocument += "</head><body>";
-            printDocument += clonedTable.outerHTML;
-            printDocument += "</body></html>";
-            printWindow.document.open();
-            printWindow.document.write(printDocument);
-            printWindow.document.close();
-            printWindow.print();
-
         });
 
-        function exportToExcel() {
-            const table = document.getElementById("table");
-            const headerRow= $("#table thead tr");
-            const data = [];
-
-            
-            for (let i = 1; i < headerRow.length; i++) {
-                const hRow = headerRow[0];
-                const headData = [];
-                const headers = $("th", hRow);
-            for (let j = 0; j < headers.length; j++) {
-                headData.push(headers[j].innerText);
-            }
-            data.push(headData);
+        const docRef = doc(db, "courses", id);
+        const snapshot = await getDoc(docRef);
+        if (snapshot.exists()) {
+          console.log(snapshot.data());
+          let data = {};
+          data = snapshot.data();
+          $("#tableTitle").text(`${data.Course}`);
+          localStorage.setItem("courseData", JSON.stringify(data));
         }
-           
+        getClasses();
+      }
 
-            const rows = table.getElementsByTagName("tr");
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                const rowData = [];
-                const cells = $("td", row);
-                for (let j = 0; j < cells.length; j++) {
-                    rowData.push(cells[j].innerText);
-                }
-                data.push(rowData);
+      async function getClasses() {
+        const q = query(collection(db, "courses", id, "classes"));
+        const querySnapshot = await getDocs(q);
+        // let userRef = this.database.ref('admin' + userId);
+        let classes = [];
+        let students = [];
+        querySnapshot.forEach((doc) => {
+          classes.push({ id: doc.id, ...doc.data() });
+          if (classes.length < 1) {
+            console.log("empty");
+          }
+          // console.log(classes);
+        });
+        $("#classAmt").text(classes.length);
+        localStorage.setItem("numberOfClasses", classes.length);
+        // $('#btnAddCol').click(
+        let iter = 0;
+        // function appendColumn() {
+        //     tbody1.find('tr').each(function () {
+        //         var trow = $(this);
+        //         if (trow.index() === 0) {
+        //             trow.append('<td>Col' + iter + '</td>');
+        //         } else {
+        //             trow.append('<td><input type="checkbox" name="cb' + iter + '"/></td>');
+        //         }
+
+        //     });
+        //     iter += 1;
+        // };
+        var table = $("#tbody1");
+        var header = $("#header");
+        let studentList = [];
+
+        classes.forEach((data, index) => {
+          students.push(data.students);
+          students.forEach((data, index) => {
+            studentList.push(data[index]);
+          });
+          // console.log(studentList);
+          header.find("tr").each(function () {
+            var trow = $(this);
+            if (trow.index() === 0) {
+              trow.append(
+                `<th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 m-0 p-1">Class ${
+                  iter + 1
+                } <a class="text-danger mr-2 href="#" ><i class="material-icons" style="font-size: 15px; cursor: pointer;" id=${
+                  data.id
+                }>close</i><a/></th>`
+              );
+            } else {
+              trow.append("<td>absent</td>");
             }
-            console.log(data);
+          });
+          $(`#${data.id}`).click(deleteItem);
 
-            const csvContent = "data:text/csv;charset=utf-8," + data.map(row => row.join(",")).join("\n");
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "Attendance.csv");
-            document.body.appendChild(link);
-            link.click();
+          table.find("tr").each(function (num, data) {
+            var trow = $(this);
+            let sID = data.id;
+            // console.log(students[index][sID].present)
+            // console.log(students);
+            if (students[index][sID].present === false) {
+              trow.append("<td>absent</td>");
+            } else {
+              // console.log(students[index].sID.present);
+              trow.append("<td>present</td>");
+            }
+          });
+          iter += 1;
+        });
+      }
+
+      window.onload = getAllDataAtOnce;
+
+      var searchbar = document.getElementById("searchbar");
+      var category = document.getElementById("CategorySelected");
+      var searchBtn = document.getElementById("searchBtn");
+      // var textInput = document.getElementById("titleInput").value
+
+      function SearchTable() {
+        var value = $(this).val().toLowerCase();
+        $("#table tbody tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      }
+
+      const deleteClass = async (classID) => {
+        Swal.fire({
+          html: `<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>`,
+          heightAuto: false,
+          showConfirmButton: false,
+          background: "transparent",
+        });
+        await deleteDoc(doc(db, "courses", id, "classes", classID));
+        console.log("deleted");
+        location.reload();
+      };
+      const deleteItem = async (e) => {
+        let classID = e.target.id;
+
+        Swal.fire({
+          title: "Delete class?",
+          html: `The attendance of this class will be deleted`,
+          icon: "warning",
+          showDenyButton: true,
+          confirmButtonText: "No",
+          denyButtonText: `Delete`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+          } else if (result.isDenied) {
+            deleteClass(classID);
+          }
+        });
+      };
+
+      $("#printTable").on("click", () => {
+        let table = document.getElementById("table");
+        var clonedTable = table.cloneNode(true);
+        var printWindow = window.open("", "_blank");
+        var printDocument = "<html><head><title>Print Document</title>";
+        printDocument +=
+          "<style>table, th, td { border: 1px solid black; border-collapse: collapse; padding: 4px;  } .material-icons{display: none;}</style>";
+        printDocument += "</head><body>";
+        printDocument += clonedTable.outerHTML;
+        printDocument += "</body></html>";
+        printWindow.document.open();
+        printWindow.document.write(printDocument);
+        printWindow.document.close();
+        printWindow.print();
+      });
+
+      function exportToExcel() {
+        const table = document.getElementById("table");
+        const headerRow = $("#table thead tr");
+        const data = [];
+
+        for (let i = 1; i < headerRow.length; i++) {
+          const hRow = headerRow[0];
+          const headData = [];
+          const headers = $("th", hRow);
+          for (let j = 0; j < headers.length; j++) {
+            headData.push(headers[j].innerText);
+          }
+          data.push(headData);
         }
 
-        $("#printExcel").on('click', exportToExcel)
+        const rows = table.getElementsByTagName("tr");
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const rowData = [];
+          const cells = $("td", row);
+          for (let j = 0; j < cells.length; j++) {
+            rowData.push(cells[j].innerText);
+          }
+          data.push(rowData);
+        }
+        console.log(data);
 
-        $("#searchbutton").on("click", SearchTable);
-        $("#searchbar").on("keyup", SearchTable);
+        const csvContent =
+          "data:text/csv;charset=utf-8," +
+          data.map((row) => row.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Attendance.csv");
+        document.body.appendChild(link);
+        link.click();
+      }
 
+      function copyTable() {
+        var table = document.getElementById("table");
+        const range = document.createRange();
+        range.selectNode(table);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+
+        console.log("Table copied to clipboard!");
+        Swal.fire({
+          title: "Copied",
+          icon: "success",
+        });
+      }
+
+      $("#copyTable").on("click", copyTable);
+      $("#printExcel").on("click", exportToExcel);
+
+      $("#searchbutton").on("click", SearchTable);
+      $("#searchbar").on("keyup", SearchTable);
     </script>
     <!-- <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -578,6 +645,5 @@
     </script> -->
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/material-dashboard.min.js?v=3.0.4"></script>
-</body>
-
+  </body>
 </html>
