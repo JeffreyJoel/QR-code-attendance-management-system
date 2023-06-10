@@ -442,7 +442,8 @@
       }
 
       async function getClasses() {
-        const q = query(collection(db, "courses", id, "classes"));
+        const q = query(collection(db, "courses", id, "classes"), orderBy("Date"))
+        // const orderedQuery = orderBy(q, "Date");
         const querySnapshot = await getDocs(q);
         // let userRef = this.database.ref('admin' + userId);
         let classes = [];
@@ -458,18 +459,7 @@
         localStorage.setItem("numberOfClasses", classes.length);
         // $('#btnAddCol').click(
         let iter = 0;
-        // function appendColumn() {
-        //     tbody1.find('tr').each(function () {
-        //         var trow = $(this);
-        //         if (trow.index() === 0) {
-        //             trow.append('<td>Col' + iter + '</td>');
-        //         } else {
-        //             trow.append('<td><input type="checkbox" name="cb' + iter + '"/></td>');
-        //         }
 
-        //     });
-        //     iter += 1;
-        // };
         var table = $("#tbody1");
         var header = $("#header");
         let studentList = [];
