@@ -1,43 +1,43 @@
 {
     "name": "Attendance App",
     "short_name": "Attendance",
-    "start_url": "https://qrcode-attendance.netlify.app/login-mobile.html",
+    "start_url": "https://qrcode-attendance.netlify.app/",
     "display": "standalone",
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
     "orientation": "portrait-primary",
     "icons": [
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "72x72"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "72x72"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "96x96"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "96x96"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg","sizes": "128x128"
+        "src": "/img/avatar.png",
+        "type": "image/png","sizes": "128x128"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "144x144"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "144x144"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "152x152"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "152x152"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "192x192"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "192x192"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "384x384"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "384x384"
       },
       {
-        "src": "/img/avatar.jpg",
-        "type": "image/jpg", "sizes": "512x512"
+        "src": "/img/avatar.png",
+        "type": "image/png", "sizes": "512x512"
       }
     ]
   }
